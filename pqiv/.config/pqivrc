@@ -1,0 +1,5 @@
+[options]
+hide-info-box   = 1
+lazy-load       = 1
+sort            = 1
+browse          = 1

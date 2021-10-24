@@ -1,0 +1,21 @@
+#! /bin/sh
+
+bspc monitor -d I II III IV V
+
+bspc config split_ratio			0.5
+
+# Border and Gap
+bspc config border_width		3
+bspc config window_gap			8
+
+# Mouse
+bspc config click_to_focus	 	button1
+bspc config focus_follows_pointer 	true
+
+# Monocle mode settings
+bspc config borderless_monocle		false
+bspc config gapless_monocle		true
+bspc config paddingless_monocle		true
+
+# Colors
+.srcery

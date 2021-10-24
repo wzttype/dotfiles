@@ -1,0 +1,9 @@
+.cache
+.password-store
+.config/vivaldi
+.mozilla
+.librewolf
+.local/share/fish/generated_completions
+.local/share/nvim
+.vim/plugged
+.git/

@@ -1,0 +1,15 @@
+[core]
+    ignorecase = false
+[user]
+    name = wzttype
+    email = wzttype@outlook.com
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool]
+    prompt = false
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"

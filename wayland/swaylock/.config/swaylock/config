@@ -1,0 +1,34 @@
+ignore-empty-password
+disable-caps-lock-text
+indicator-caps-lock
+color=0AAEB3
+
+# Text color
+font-size=50
+font=IBMPlexMono
+text-color=FBB829
+text-clear-color=FBB829
+text-caps-lock-color=FBB829
+text-ver-color=FBB829
+text-wrong-color=FBB829
+
+# Ring
+indicator-radius=230
+indicator-thickness=5
+line-uses-ring
+line-uses-inside
+inside-color=#5e81ac00
+inside-ver-color=#5e81ac00
+inside-caps-lock-color=#eceff400
+inside-wrong-color=#5e81ac00
+inside-clear-color=#5e81ac00
+ring-ver-color=#5e81ac00
+line-wrong-color=#bf616a
+ring-wrong-color=#bf616a
+bs-hl-color=#bf616a
+ring-clear-color=#ebcb8b
+ring-color=#4c566a00
+key-hl-color=#d08770
+separator-color=#5e81ac00
+layout-text-color=#eceff400
+line-wrong-color=#d08770
