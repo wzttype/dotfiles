@@ -1,0 +1,4 @@
+-i
+--write-auto-sub
+-o '/media/My Passport/New_Folder/Movie/%(uploader)s/%(upload_date)s - %(title)s.%(ext)s'
+--proxy socks5://127.0.0.1:1080

@@ -37,6 +37,14 @@ return require('packer').startup {
             opt = true,
         }
 
+        use{
+            'nathom/filetype.nvim',
+            config = function()
+                -- Do not source the default filetype.vim, use this line before V0.6.0
+                vim.g.did_load_filetypes = 1
+            end
+        }
+
         use {
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
@@ -274,18 +282,16 @@ return require('packer').startup {
         }
 
         use {
-            'kristijanhusak/orgmode.nvim',
+            'jakewvincent/mkdnflow.nvim',
             config = function()
-                require('orgmode').setup()
+                require('mkdnflow').setup({})
             end
         }
 
         use {
-            "akinsho/org-bullets.nvim",
+            'kristijanhusak/orgmode.nvim',
             config = function()
-                require("org-bullets").setup {
-                    symbols = { "◉", "○", "✸", "✿" }
-                }
+                require('orgmode').setup{}
             end
         }
 

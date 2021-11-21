@@ -1,6 +1,6 @@
 # Software
 exec mako
-exec --no-startup-id fcitx5 -d
+# exec --no-startup-id fcitx5 -d
 
 # Touchpad
 input type:touchpad {
@@ -71,7 +71,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+BackSpace kill
 
 # Start your launcher
-bindsym $mod+d exec wofi
+bindsym $mod+d exec bemenu-run -l 5 --fn 'Source Code Pro 22'
 
 # Volume
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
