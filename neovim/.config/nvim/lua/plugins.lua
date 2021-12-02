@@ -37,13 +37,7 @@ return require('packer').startup {
             opt = true,
         }
 
-        use{
-            'nathom/filetype.nvim',
-            config = function()
-                -- Do not source the default filetype.vim, use this line before V0.6.0
-                vim.g.did_load_filetypes = 1
-            end
-        }
+        use 'nathom/filetype.nvim'
 
         use {
             'nvim-treesitter/nvim-treesitter',
@@ -69,10 +63,10 @@ return require('packer').startup {
                     incremental_selection = {
                         enable = true,
                         keymaps = {
-                            init_selection = "gnn",
-                            node_incremental = "gna",
-                            -- scope_incremental = "gns",
-                            node_decremental = "gnd",
+                            init_selection = "<CR>",
+                            scope_incremental = "<CR>",
+                            node_incremental = "<TAB>",
+                            node_decremental = "<S-TAB>",
                         },
                     },
                 }
@@ -99,6 +93,8 @@ return require('packer').startup {
             end
         }
 
+        use {'stevearc/aerial.nvim'}
+
         use {
             'andymass/vim-matchup',
             after = { 'nvim-treesitter' },
@@ -112,8 +108,8 @@ return require('packer').startup {
         }
 
         use {
-            'ibhagwan/fzf-lua',
-            requires = {'vijaymarupudi/nvim-fzf'}
+            'nvim-telescope/telescope.nvim',
+            requires = { 'nvim-lua/plenary.nvim' }
         }
 
         use {
@@ -198,12 +194,12 @@ return require('packer').startup {
             end
         }
 
-        -- wair for neovim 0.6.
-        -- use {
-        --     'https://gitlab.com/yorickpeterse/nvim-dd.git',
-        --     config = function()
-        --         require('dd').setup()
-        --     end
+        use {
+            'https://gitlab.com/yorickpeterse/nvim-dd.git',
+            config = function()
+                require('dd').setup()
+            end
+        }
 
         use {
             'karb94/neoscroll.nvim',
@@ -278,13 +274,6 @@ return require('packer').startup {
             'numToStr/Comment.nvim',
             config = function()
                 require('Comment').setup()
-            end
-        }
-
-        use {
-            'jakewvincent/mkdnflow.nvim',
-            config = function()
-                require('mkdnflow').setup({})
             end
         }
 

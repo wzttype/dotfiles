@@ -10,7 +10,6 @@ browserpass-firefox
 clang
 clash
 convmv
-ctags
 dos2unix
 efibootmgr
 fd
@@ -19,8 +18,6 @@ fish
 fzf
 gcc
 git
-global
-himalaya
 iwd
 kitty
 ledger
@@ -29,7 +26,6 @@ libstdc++5
 libva-mesa-driver
 linux
 linux-firmware
-lowdown
 lua
 mandoc
 mesa
@@ -46,6 +42,7 @@ pipewire
 pipewire-pulse
 pqiv
 proxychains-ng
+qemu
 ripgrep
 rsync
 sdcv

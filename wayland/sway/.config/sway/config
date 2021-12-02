@@ -1,6 +1,5 @@
 # Software
 exec mako
-# exec --no-startup-id fcitx5 -d
 
 # Touchpad
 input type:touchpad {
