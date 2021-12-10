@@ -3,6 +3,7 @@ vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.diffopt = vim.opt.diffopt:append "algorithm:histogram"
 vim.opt.expandtab = true
 vim.opt.exrc = false
 vim.opt.fileencoding = "utf-8"
@@ -14,7 +15,7 @@ vim.opt.iskeyword = vim.opt.iskeyword:append "-"
 vim.opt.lazyredraw = true
 vim.opt.linebreak = true
 vim.opt.list = true
-vim.opt.listchars = {space="⋅",trail="•",extends="⟩",precedes="⟨"}
+vim.opt.listchars = { space="⋅", trail="•", extends="⟩", precedes="⟨" }
 vim.opt.modelines = 1
 vim.opt.number = true
 vim.opt.relativenumber = true

@@ -143,13 +143,6 @@ return require('packer').startup {
         }
 
         use {
-            'windwp/windline.nvim',
-            config = function()
-                require('wlsample.bubble')
-            end
-        }
-
-        use {
             'lukas-reineke/indent-blankline.nvim',
             event = "BufRead",
             config = function()
@@ -218,6 +211,27 @@ return require('packer').startup {
         }
 
         use {
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            config = function()
+                require('gitsigns').setup {
+                    current_line_blame = true,
+                }
+            end
+        }
+
+        use {
+            'famiu/feline.nvim',
+            config = function()
+                require('feline').setup {
+                    preset = 'noicon'
+                }
+            end
+        }
+
+        use {
             'blackCauldron7/surround.nvim',
             config = function()
                 require"surround".setup {
@@ -261,14 +275,7 @@ return require('packer').startup {
             end
         }
 
-        use {
-            'ggandor/lightspeed.nvim',
-            config = function()
-                require'lightspeed'.setup {
-                    jump_to_first_match = false,
-                }
-            end
-        }
+        use 'ggandor/lightspeed.nvim'
 
         use {
             'numToStr/Comment.nvim',
