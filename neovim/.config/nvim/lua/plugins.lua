@@ -1,41 +1,21 @@
--- packer.nvim initialization
-local execute = vim.api.nvim_command
-local compile_suffix = "/plugin/packer_compiled.lua"
-local install_suffix = "/site/pack/packer/%s/packer.nvim"
-local install_path = vim.fn.stdpath("data") .. string.format(install_suffix, "opt")
-local compile_path = vim.fn.stdpath("data") .. compile_suffix
-
--- check if packer is installed (~/.local/share/nvim/site/pack)
-local is_installed = vim.fn.empty(vim.fn.glob(install_path)) == 0
-local is_compiled = vim.fn.empty(vim.fn.glob(compile_path)) == 0
-if not is_installed then
-    if vim.fn.input("Install packer.nvim? (y for yes) ") == "y" then
-        execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-        execute("packadd packer.nvim")
-        print("Installed packer.nvim.")
-        is_installed = 1
-    end
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
 end
-
--- Packer commands
-vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
-vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
-vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
-vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
-vim.cmd [[command! PC PackerCompile]]
-vim.cmd [[command! PS PackerStatus]]
-vim.cmd [[command! PU PackerSync]]
-
-vim.cmd [[packadd packer.nvim]]
+vim.api.nvim_command("packadd packer.nvim")
 
 return require('packer').startup {
     function()
 
-        use {
-            'wbthomason/packer.nvim',
-            opt = true,
-        }
+        use 'wbthomason/packer.nvim'
 
         use 'nathom/filetype.nvim'
 
@@ -52,6 +32,7 @@ return require('packer').startup {
                         "yaml",
                         "json",
                         "vim",
+                        "markdown",
                         "latex",
                         "ledger",
                     },
@@ -93,23 +74,33 @@ return require('packer').startup {
             end
         }
 
-        use {'stevearc/aerial.nvim'}
+        use {
+            'stevearc/aerial.nvim',
+            config = function()
+                require('telescope').load_extension('aerial')
+            end
+        }
 
         use {
-            'andymass/vim-matchup',
-            after = { 'nvim-treesitter' },
+            'monkoose/matchparen.nvim',
             config = function()
-                require'nvim-treesitter.configs'.setup {
-                    matchup = {
-                        enable = true,
-                    },
-                }
+                require('matchparen').setup()
             end
         }
 
         use {
             'nvim-telescope/telescope.nvim',
             requires = { 'nvim-lua/plenary.nvim' }
+        }
+
+        use {
+            'ahmedkhalf/project.nvim',
+            config = function()
+                require("project_nvim").setup {
+                    show_hidden = true,
+                }
+                require('telescope').load_extension('projects')
+            end
         }
 
         use {
@@ -203,8 +194,7 @@ return require('packer').startup {
 
         use {
             'norcalli/nvim-colorizer.lua',
-            opt = true,
-            cmd = {'ColorizerAttachToBuffer', 'ColorizerDetachFromBuffer' },
+            event = "BufRead",
             config = function()
                 require'colorizer'.setup()
             end
@@ -215,9 +205,25 @@ return require('packer').startup {
             requires = {
                 'nvim-lua/plenary.nvim'
             },
+            event = "BufRead",
             config = function()
                 require('gitsigns').setup {
                     current_line_blame = true,
+                }
+            end
+        }
+
+        use {
+            'jose-elias-alvarez/null-ls.nvim',
+            requires = { "nvim-lua/plenary.nvim" },
+            config = function()
+                require("null-ls").setup {
+                    sources = {
+                        require("null-ls").builtins.code_actions.gitsigns,
+                        -- require("null-ls").builtins.formatting.stylua,
+                        -- require("null-ls").builtins.diagnostics.eslint,
+                        -- require("null-ls").builtins.completion.spell,
+                    },
                 }
             end
         }
@@ -240,12 +246,12 @@ return require('packer').startup {
             end
         }
 
-        use {
+        use { 
             'beauwilliams/focus.nvim',
-            cmd = "FocusSplitNicely",
-            module = "focus",
             config = function()
-                require("focus").setup()
+                require("focus").setup {
+                    cursorline = false,
+                }
             end
         }
 
@@ -279,15 +285,10 @@ return require('packer').startup {
 
         use {
             'numToStr/Comment.nvim',
+            opt = true,
+            keys = { "gc", "gcc" },
             config = function()
                 require('Comment').setup()
-            end
-        }
-
-        use {
-            'kristijanhusak/orgmode.nvim',
-            config = function()
-                require('orgmode').setup{}
             end
         }
 
