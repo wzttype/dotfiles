@@ -36,6 +36,7 @@ nnn
 noto-fonts-emoji
 opendoas
 p7zip
+parted
 pass
 pass-otp
 pipewire
@@ -48,12 +49,13 @@ scrcpy
 sdcv
 smartmontools
 stow
+task
 tmux
 transmission-cli
 ttf-ibm-plex
+ttf-sarasa-gothic
 uchardet
 udevil
-wqy-microhei
 yt-dlp
 zathura
 zathura-pdf-mupdf

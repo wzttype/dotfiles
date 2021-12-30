@@ -98,6 +98,7 @@ return require('packer').startup {
             config = function()
                 require("project_nvim").setup {
                     show_hidden = true,
+                    silent_chdir = true,
                 }
                 require('telescope').load_extension('projects')
             end
@@ -107,7 +108,14 @@ return require('packer').startup {
             'windwp/nvim-autopairs',
             config = function()
                 require('nvim-autopairs').setup {
+                    check_ts = true,
+                    ts_config = {
+                        lua = { "string", "source" },
+                        javascript = { "string", "template_string" },
+                        java = false,
+                    },
                     enable_check_bracket_line = false,
+                    ignored_next_char = "[%w%.]",
                     enable_afterquote = false,
                 }
             end
@@ -139,15 +147,16 @@ return require('packer').startup {
             config = function()
                 require("indent_blankline").setup {
                     filetype_exclude = {
+                        "help",
                         "vimwiki",
                         "man",
                         "gitmessengerpopup",
                         "diagnosticpopup",
                         "lspinfo",
                         "packer",
+                        "Trouble",
                         "TelescopePrompt",
                         "TelescopeResults",
-                        "",
                     },
                     buftype_exclude = { "terminal" },
                     space_char_blankline = " ",
