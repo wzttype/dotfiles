@@ -43,9 +43,6 @@ bindkey -M menuselect 'down' vi-down-line-or-history
 bindkey -M menuselect 'up' vi-up-line-or-history
 bindkey -M menuselect 'right' vi-forward-char
 
-# z.lua
-eval "$(lua ~/.local/bin/z.lua --init bash)"
-
 # Environment
 function getenv {
   var="$1"
@@ -65,3 +62,6 @@ function getpath {
   PATH=$PATH:$1
 }
 . ~/.config/environment
+
+# z
+eval "$(zoxide init zsh)"

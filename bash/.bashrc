@@ -37,9 +37,6 @@ export HISTFILE=$HOME/.local/share/.bash_history
 # Prompt
 PS1='\u@\h \W> '
 
-# z.lua
-eval "$(lua ~/.local/bin/z.lua --init bash)"
-
 # Environment
 function getenv {
   var="$1"
@@ -59,3 +56,6 @@ function getpath {
   PATH=$PATH:$1
 }
 . ~/.config/environment
+
+# z
+eval "$(zoxide init bash)"

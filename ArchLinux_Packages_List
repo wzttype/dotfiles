@@ -1,7 +1,5 @@
 amd-ucode
 base
-bluez
-bluez-utils
 booster
 bottom
 brightnessctl
@@ -9,9 +7,9 @@ browserpass
 browserpass-firefox
 clang
 clash
+clifm
 convmv
 dos2unix
-efibootmgr
 fd
 firefox
 fish
@@ -22,34 +20,31 @@ iwd
 kitty
 ledger
 librewolf
-libstdc++5
 libva-mesa-driver
 linux
 linux-firmware
-lua
 mandoc
 mesa
 mpv
 ncdu
 neovim
-nnn
 noto-fonts-emoji
-opendoas
+openssh
 p7zip
 parted
 pass
-pass-otp
 pipewire
 pipewire-pulse
 pqiv
 proxychains-ng
+qrencode
 ripgrep
 rsync
 scrcpy
-sdcv
 smartmontools
 stow
-task
+sudo
+tlp
 tmux
 transmission-cli
 ttf-ibm-plex
@@ -59,9 +54,8 @@ udevil
 yt-dlp
 zathura
 zathura-pdf-mupdf
-zbar
+zoxide
 zps
-zram-generator
 
 # X             Wayland
 xorg-server     sway
