@@ -75,6 +75,20 @@ return require('packer').startup {
         }
 
         use {
+            'p00f/nvim-ts-rainbow',
+            after = { 'nvim-treesitter' },
+            config = function()
+                require'nvim-treesitter.configs'.setup {
+                    rainbow = {
+                        enable = true,
+                        entended_mode = true,
+                        max_file_lines = nil,
+                    }
+                }
+            end
+        }
+
+        use {
             'stevearc/aerial.nvim',
             config = function()
                 require('telescope').load_extension('aerial')
@@ -89,7 +103,9 @@ return require('packer').startup {
         }
         use {
             'sindrets/diffview.nvim',
-            requires = 'nvim-lua/plenary.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+                },
             config = function()
                 require'diffview'.setup {
                     use_icons = false,
@@ -99,7 +115,9 @@ return require('packer').startup {
 
         use {
             'nvim-telescope/telescope.nvim',
-            requires = { 'nvim-lua/plenary.nvim' }
+            requires = {
+                'nvim-lua/plenary.nvim'
+            }
         }
 
         use {
@@ -197,6 +215,18 @@ return require('packer').startup {
         }
 
         use {
+            'nvim-lualine/lualine.nvim',
+            config = function()
+                require('lualine').setup {
+                    options = {
+                        icons_enabled = false,
+                        theme = 'palenight'
+                    }
+                }
+            end
+        }
+
+        use {
             'https://gitlab.com/yorickpeterse/nvim-dd.git',
             config = function()
                 require('dd').setup()
@@ -227,6 +257,14 @@ return require('packer').startup {
             config = function()
                 require('gitsigns').setup {
                     current_line_blame = true,
+                    signs = {
+                        add = {text = '▍'},
+                        change = {text = '▍'},
+                        delete = {text = '▁'},
+                        topdelete = {text = '▔'},
+                        changedelete = {text = '█'},
+                    },
+                    watch_gitdir = { interval = 1000 },
                 }
             end
         }
@@ -242,15 +280,6 @@ return require('packer').startup {
                         -- require("null-ls").builtins.diagnostics.eslint,
                         -- require("null-ls").builtins.completion.spell,
                     },
-                }
-            end
-        }
-
-        use {
-            'famiu/feline.nvim',
-            config = function()
-                require('feline').setup {
-                    preset = 'noicon'
                 }
             end
         }

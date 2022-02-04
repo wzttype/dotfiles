@@ -1,5 +1,5 @@
 # Software
-exec mako
+# exec mako
 
 # Touchpad
 input type:touchpad {
@@ -79,7 +79,7 @@ set $right l
 # Basics:
 
 # Start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec foot
 
 # Kill focused window
 bindsym $mod+BackSpace kill

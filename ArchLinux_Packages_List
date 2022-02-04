@@ -7,17 +7,16 @@ browserpass
 browserpass-firefox
 clang
 clash
-clifm
-convmv
 dos2unix
+entr
 fd
 firefox
 fish
+foot
 fzf
 gcc
 git
 iwd
-kitty
 ledger
 librewolf
 libva-mesa-driver
@@ -28,7 +27,6 @@ mesa
 mpv
 ncdu
 neovim
-noto-fonts-emoji
 openssh
 p7zip
 parted
@@ -50,12 +48,13 @@ transmission-cli
 ttf-ibm-plex
 ttf-sarasa-gothic
 uchardet
-udevil
+udisks2
+vulkan-radeon
+xplr
 yt-dlp
 zathura
 zathura-pdf-mupdf
 zoxide
-zps
 
 # X             Wayland
 xorg-server     sway
