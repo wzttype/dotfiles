@@ -1,10 +1,10 @@
 configuration {
-	modi: 			"drun,run";
-	width: 			550;
-	lines: 			5;
-	font: 			"IBMPlexMono Regular 15";
-	show-match: 		false;
-	separator-style: 	"solid";
-	hide-scrollbar: 	true;
-	theme:			"~/.config/rofi/nord";
-	}
+    modi: "drun,run";
+    width: 550;
+    lines: 5;
+    font: "IBMPlexMono Regular 15";
+    show-match: false;
+    separator-style: "solid";
+    hide-scrollbar: true;
+    theme: "~/.config/rofi/nord";
+}

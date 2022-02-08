@@ -23,6 +23,50 @@ return require('packer').startup {
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
             event = 'BufRead',
+            requires = {
+                {
+                    'nvim-treesitter/playground',
+                    after = { 'nvim-treesitter' },
+                    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
+                    config = function()
+                        require'nvim-treesitter.configs'.setup {
+                            playground = {
+                                enable = true,
+                            },
+                            query_linter = {
+                                enable = true,
+                                use_virtual_text = true,
+                                lint_events = { 'BufWrite', 'CursorHold', 'CursorMoved' },
+                            },
+                        }
+                    end
+                },
+                {
+                    'p00f/nvim-ts-rainbow',
+                    after = { 'nvim-treesitter' },
+                    config = function()
+                        require'nvim-treesitter.configs'.setup {
+                            rainbow = {
+                                enable = true,
+                                entended_mode = true,
+                                max_file_lines = nil,
+                            }
+                        }
+                    end
+                },
+                {
+                    'JoosepAlviste/nvim-ts-context-commentstring',
+                    after = { 'nvim-treesitter' },
+                    config = function()
+                        require'nvim-treesitter.configs'.setup {
+                            context_commentstring = {
+                                enable = true,
+                                enable_autocmd = false,
+                            }
+                        }
+                    end
+                },
+            },
             config = function()
                 require'nvim-treesitter.configs'.setup {
                     ensure_installed = {
@@ -57,38 +101,6 @@ return require('packer').startup {
         }
 
         use {
-            'nvim-treesitter/playground',
-            after = { 'nvim-treesitter' },
-            cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
-            config = function()
-                require'nvim-treesitter.configs'.setup {
-                    playground = {
-                        enable = true,
-                    },
-                    query_linter = {
-                        enable = true,
-                        use_virtual_text = true,
-                        lint_events = { "BufWrite", "CursorHold", "CursorMoved" },
-                    },
-                }
-            end
-        }
-
-        use {
-            'p00f/nvim-ts-rainbow',
-            after = { 'nvim-treesitter' },
-            config = function()
-                require'nvim-treesitter.configs'.setup {
-                    rainbow = {
-                        enable = true,
-                        entended_mode = true,
-                        max_file_lines = nil,
-                    }
-                }
-            end
-        }
-
-        use {
             'stevearc/aerial.nvim',
             config = function()
                 require('telescope').load_extension('aerial')
@@ -101,23 +113,10 @@ return require('packer').startup {
                 require('matchparen').setup()
             end
         }
-        use {
-            'sindrets/diffview.nvim',
-            requires = {
-                'nvim-lua/plenary.nvim'
-                },
-            config = function()
-                require'diffview'.setup {
-                    use_icons = false,
-                }
-            end
-        }
 
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {
-                'nvim-lua/plenary.nvim'
-            }
+            requires = { 'nvim-lua/plenary.nvim' }
         }
 
         use {
@@ -133,6 +132,7 @@ return require('packer').startup {
 
         use {
             'windwp/nvim-autopairs',
+            event = "InsertEnter",
             config = function()
                 require('nvim-autopairs').setup {
                     check_ts = true,
@@ -141,9 +141,21 @@ return require('packer').startup {
                         javascript = { "string", "template_string" },
                         java = false,
                     },
+                    disable_filetype = { "TelescopePrompt", "spectre_panel" },
                     enable_check_bracket_line = false,
                     ignored_next_char = "[%w%.]",
                     enable_afterquote = false,
+                    fast_wrap = {
+                        map = "<M-e>",
+                        chars = { "{", "[", "(", '"', "'" },
+                        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+                        offset = 0,
+                        end_key = "$",
+                        keys = "qwertyuiopzxcvbnmasdfghjkl",
+                        check_comma = true,
+                        highlight = "PmenuSel",
+                        highlight_grey = "LineNr",
+                    },
                 }
             end
         }
@@ -170,7 +182,7 @@ return require('packer').startup {
 
         use {
             'lukas-reineke/indent-blankline.nvim',
-            event = "BufRead",
+            event = 'BufRead',
             config = function()
                 require("indent_blankline").setup {
                     filetype_exclude = {
@@ -235,6 +247,7 @@ return require('packer').startup {
 
         use {
             'karb94/neoscroll.nvim',
+            event = 'BufRead',
             config = function()
                 require('neoscroll').setup()
             end
@@ -242,7 +255,7 @@ return require('packer').startup {
 
         use {
             'norcalli/nvim-colorizer.lua',
-            event = "BufRead",
+            event = 'BufRead',
             config = function()
                 require'colorizer'.setup()
             end
@@ -250,13 +263,10 @@ return require('packer').startup {
 
         use {
             'lewis6991/gitsigns.nvim',
-            requires = {
-                'nvim-lua/plenary.nvim'
-            },
-            event = "BufRead",
+            requires = { 'nvim-lua/plenary.nvim' },
+            event = 'BufRead',
             config = function()
                 require('gitsigns').setup {
-                    current_line_blame = true,
                     signs = {
                         add = {text = '▍'},
                         change = {text = '▍'},
@@ -264,14 +274,15 @@ return require('packer').startup {
                         topdelete = {text = '▔'},
                         changedelete = {text = '█'},
                     },
-                    watch_gitdir = { interval = 1000 },
+                    current_line_blame = true,
                 }
             end
         }
 
         use {
             'jose-elias-alvarez/null-ls.nvim',
-            requires = { "nvim-lua/plenary.nvim" },
+            event = 'BufRead',
+            requires = { 'nvim-lua/plenary.nvim' },
             config = function()
                 require("null-ls").setup {
                     sources = {
@@ -332,10 +343,25 @@ return require('packer').startup {
 
         use {
             'numToStr/Comment.nvim',
-            opt = true,
-            keys = { "gc", "gcc" },
+            event = 'BufRead',
             config = function()
-                require('Comment').setup()
+                require('Comment').setup {
+                    pre_hook = function(ctx)
+                        local U = require 'Comment.utils'
+
+                        local location = nil
+                        if ctx.ctype == U.ctype.block then
+                            location = require('ts_context_commentstring.utils').get_cursor_location()
+                        elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+                            location = require('ts_context_commentstring.utils').get_visual_start_location()
+                        end
+
+                        return require('ts_context_commentstring.internal').calculate_commentstring {
+                            key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
+                            location = location,
+                        }
+                    end,
+                }
             end
         }
 
