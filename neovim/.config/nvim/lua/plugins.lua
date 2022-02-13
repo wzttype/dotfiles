@@ -79,6 +79,7 @@ return require('packer').startup {
                         "markdown",
                         "latex",
                         "ledger",
+                        "norg",
                     },
                     highlight = {
                         enable = true,
@@ -124,7 +125,6 @@ return require('packer').startup {
             config = function()
                 require("project_nvim").setup {
                     show_hidden = true,
-                    silent_chdir = true,
                 }
                 require('telescope').load_extension('projects')
             end
@@ -361,6 +361,27 @@ return require('packer').startup {
                             location = location,
                         }
                     end,
+                }
+            end
+        }
+
+        use {
+            "nvim-neorg/neorg",
+            requires = "nvim-lua/plenary.nvim",
+            after = { 'nvim-treesitter' },
+            config = function()
+                require('neorg').setup {
+                    load = {
+                        ["core.defaults"] = {},
+                        -- ["core.norg.completion"] = {},
+                        ["core.norg.dirman"] = {
+                            config = {
+                                workspaces = {
+                                    task = "~/Documents/task",
+                                }
+                            }
+                        }
+                    }
                 }
             end
         }

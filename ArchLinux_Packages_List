@@ -31,7 +31,6 @@ neovim
 nnn
 openssh
 p7zip
-parted
 pass
 pipewire
 pipewire-pulse
@@ -52,7 +51,6 @@ ttf-sarasa-gothic
 uchardet
 udisks2
 vulkan-radeon
-yt-dlp
 zathura
 zathura-pdf-mupdf
 zoxide
