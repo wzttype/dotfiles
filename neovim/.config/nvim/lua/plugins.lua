@@ -181,6 +181,22 @@ return require('packer').startup {
         }
 
         use {
+            'echasnovski/mini.nvim',
+            config = function()
+                require('mini.trailspace').setup()
+            end
+        }
+
+        use {
+            'kevinhwang91/nvim-bqf',
+            event = 'BufRead',
+            ft = 'qf',
+            config = function()
+                require('bqf').setup()
+            end
+        }
+
+        use {
             'lukas-reineke/indent-blankline.nvim',
             event = 'BufRead',
             config = function()
@@ -239,13 +255,6 @@ return require('packer').startup {
         }
 
         use {
-            'https://gitlab.com/yorickpeterse/nvim-dd.git',
-            config = function()
-                require('dd').setup()
-            end
-        }
-
-        use {
             'karb94/neoscroll.nvim',
             event = 'BufRead',
             config = function()
@@ -291,15 +300,6 @@ return require('packer').startup {
                         -- require("null-ls").builtins.diagnostics.eslint,
                         -- require("null-ls").builtins.completion.spell,
                     },
-                }
-            end
-        }
-
-        use {
-            'blackCauldron7/surround.nvim',
-            config = function()
-                require"surround".setup {
-                    mappings_style = "surround"
                 }
             end
         }
@@ -366,8 +366,8 @@ return require('packer').startup {
         }
 
         use {
-            "nvim-neorg/neorg",
-            requires = "nvim-lua/plenary.nvim",
+            'nvim-neorg/neorg',
+            requires = 'nvim-lua/plenary.nvim',
             after = { 'nvim-treesitter' },
             config = function()
                 require('neorg').setup {
