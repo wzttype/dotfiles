@@ -1,5 +1,5 @@
 .cache
-.password-store
+Documents/password-store
 .config/vivaldi
 .mozilla
 .librewolf

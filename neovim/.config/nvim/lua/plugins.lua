@@ -79,7 +79,6 @@ return require('packer').startup {
                         "markdown",
                         "latex",
                         "ledger",
-                        "norg",
                     },
                     highlight = {
                         enable = true,
@@ -98,13 +97,6 @@ return require('packer').startup {
                 }
                 require'nvim-treesitter.install'.compilers = { "clang", "gcc" }
                 require'nvim-treesitter.install'.prefer_git = true
-            end
-        }
-
-        use {
-            'stevearc/aerial.nvim',
-            config = function()
-                require('telescope').load_extension('aerial')
             end
         }
 
@@ -132,7 +124,7 @@ return require('packer').startup {
 
         use {
             'windwp/nvim-autopairs',
-            event = "InsertEnter",
+            event = 'InsertEnter',
             config = function()
                 require('nvim-autopairs').setup {
                     check_ts = true,
@@ -145,17 +137,6 @@ return require('packer').startup {
                     enable_check_bracket_line = false,
                     ignored_next_char = "[%w%.]",
                     enable_afterquote = false,
-                    fast_wrap = {
-                        map = "<M-e>",
-                        chars = { "{", "[", "(", '"', "'" },
-                        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-                        offset = 0,
-                        end_key = "$",
-                        keys = "qwertyuiopzxcvbnmasdfghjkl",
-                        check_comma = true,
-                        highlight = "PmenuSel",
-                        highlight_grey = "LineNr",
-                    },
                 }
             end
         }
@@ -164,21 +145,22 @@ return require('packer').startup {
             'EdenEast/nightfox.nvim',
             config = function()
                 require('nightfox').setup {
-                    fox = "nightfox",
-                    styles = {
-                        comments = "italic",
-                        keywords = "bold",
-                        functions = "italic,bold",
-                    },
-                    inverse = {
-                        match_paren = true,
-                        visual = true,
-                        search = true,
-                    },
+                    options = {
+                        styles = {
+                            comments = "italic",
+                            keywords = "bold",
+                            functions = "italic,bold",
+                        },
+                        inverse = {
+                            match_paren = true,
+                            visual = true,
+                            search = true,
+                        },
+                    }
                 }
-                require('nightfox').load()
             end
         }
+        vim.cmd("colorscheme nightfox")
 
         use {
             'echasnovski/mini.nvim',
@@ -304,7 +286,7 @@ return require('packer').startup {
             end
         }
 
-        use { 
+        use {
             'beauwilliams/focus.nvim',
             config = function()
                 require("focus").setup {
@@ -365,28 +347,8 @@ return require('packer').startup {
             end
         }
 
-        use {
-            'nvim-neorg/neorg',
-            requires = 'nvim-lua/plenary.nvim',
-            after = { 'nvim-treesitter' },
-            config = function()
-                require('neorg').setup {
-                    load = {
-                        ["core.defaults"] = {},
-                        -- ["core.norg.completion"] = {},
-                        ["core.norg.dirman"] = {
-                            config = {
-                                workspaces = {
-                                    task = "~/Documents/task",
-                                }
-                            }
-                        }
-                    }
-                }
-            end
-        }
-
     end,
+
     config = {
         git = {
             clone_timeout = 600
