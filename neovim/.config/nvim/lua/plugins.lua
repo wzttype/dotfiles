@@ -163,13 +163,6 @@ return require('packer').startup {
         vim.cmd("colorscheme nightfox")
 
         use {
-            'echasnovski/mini.nvim',
-            config = function()
-                require('mini.trailspace').setup()
-            end
-        }
-
-        use {
             'kevinhwang91/nvim-bqf',
             event = 'BufRead',
             ft = 'qf',
@@ -272,15 +265,12 @@ return require('packer').startup {
 
         use {
             'jose-elias-alvarez/null-ls.nvim',
-            event = 'BufRead',
             requires = { 'nvim-lua/plenary.nvim' },
+            event = 'BufRead',
             config = function()
                 require("null-ls").setup {
                     sources = {
                         require("null-ls").builtins.code_actions.gitsigns,
-                        -- require("null-ls").builtins.formatting.stylua,
-                        -- require("null-ls").builtins.diagnostics.eslint,
-                        -- require("null-ls").builtins.completion.spell,
                     },
                 }
             end

@@ -6,16 +6,15 @@ bottom
 brightnessctl
 browserpass
 browserpass-firefox
+chromium
 clang
 clash
-dos2unix
 entr
 fd
 firefox
 fish
 foot
 fzf
-gcc
 git
 iwd
 ledger
@@ -47,7 +46,6 @@ tmux
 transmission-cli
 ttf-ibm-plex
 ttf-sarasa-gothic
-uchardet
 udisks2
 vulkan-radeon
 zathura
