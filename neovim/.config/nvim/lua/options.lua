@@ -12,6 +12,7 @@ vim.opt.fileformat = "unix"
 vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.ignorecase = true
 vim.opt.iskeyword = vim.opt.iskeyword:append "-"
+vim.opt.laststatus = 3
 vim.opt.lazyredraw = true
 vim.opt.linebreak = true
 vim.opt.list = true

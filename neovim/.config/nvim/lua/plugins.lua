@@ -25,23 +25,6 @@ return require('packer').startup {
             event = 'BufRead',
             requires = {
                 {
-                    'nvim-treesitter/playground',
-                    after = { 'nvim-treesitter' },
-                    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
-                    config = function()
-                        require'nvim-treesitter.configs'.setup {
-                            playground = {
-                                enable = true,
-                            },
-                            query_linter = {
-                                enable = true,
-                                use_virtual_text = true,
-                                lint_events = { 'BufWrite', 'CursorHold', 'CursorMoved' },
-                            },
-                        }
-                    end
-                },
-                {
                     'p00f/nvim-ts-rainbow',
                     after = { 'nvim-treesitter' },
                     config = function()
@@ -50,18 +33,6 @@ return require('packer').startup {
                                 enable = true,
                                 entended_mode = true,
                                 max_file_lines = nil,
-                            }
-                        }
-                    end
-                },
-                {
-                    'JoosepAlviste/nvim-ts-context-commentstring',
-                    after = { 'nvim-treesitter' },
-                    config = function()
-                        require'nvim-treesitter.configs'.setup {
-                            context_commentstring = {
-                                enable = true,
-                                enable_autocmd = false,
                             }
                         }
                     end
@@ -85,15 +56,6 @@ return require('packer').startup {
                         use_languages = true,
                         additional_vim_regex_highlighting = true,
                     },
-                    incremental_selection = {
-                        enable = true,
-                        keymaps = {
-                            init_selection = "<CR>",
-                            scope_incremental = "<CR>",
-                            node_incremental = "<TAB>",
-                            node_decremental = "<S-TAB>",
-                        },
-                    },
                 }
                 require'nvim-treesitter.install'.compilers = { "clang", "gcc" }
                 require'nvim-treesitter.install'.prefer_git = true
@@ -101,45 +63,40 @@ return require('packer').startup {
         }
 
         use {
-            'monkoose/matchparen.nvim',
+            'jose-elias-alvarez/null-ls.nvim',
+            requires = { 'nvim-lua/plenary.nvim' },
+            event = 'BufRead',
             config = function()
-                require('matchparen').setup()
-            end
-        }
-
-        use {
-            'nvim-telescope/telescope.nvim',
-            requires = { 'nvim-lua/plenary.nvim' }
-        }
-
-        use {
-            'ahmedkhalf/project.nvim',
-            config = function()
-                require("project_nvim").setup {
-                    show_hidden = true,
-                }
-                require('telescope').load_extension('projects')
-            end
-        }
-
-        use {
-            'windwp/nvim-autopairs',
-            event = 'InsertEnter',
-            config = function()
-                require('nvim-autopairs').setup {
-                    check_ts = true,
-                    ts_config = {
-                        lua = { "string", "source" },
-                        javascript = { "string", "template_string" },
-                        java = false,
+                require("null-ls").setup {
+                    sources = {
+                        require("null-ls").builtins.code_actions.gitsigns,
                     },
-                    disable_filetype = { "TelescopePrompt", "spectre_panel" },
-                    enable_check_bracket_line = false,
-                    ignored_next_char = "[%w%.]",
-                    enable_afterquote = false,
                 }
             end
         }
+
+        use 'ibhagwan/fzf-lua'
+
+        use {
+            'echasnovski/mini.nvim',
+            event = 'BufRead',
+            config = function()
+                require('mini.comment').setup()
+                require('mini.indentscope').setup()
+                require('mini.trailspace').setup()
+            end
+        }
+
+        use {
+            'nyngwang/NeoRoot.lua',
+            config = function()
+                require('neo-root').setup {
+                    CUR_MODE = 2
+                }
+            end
+        }
+
+        use 'ggandor/lightspeed.nvim'
 
         use {
             'EdenEast/nightfox.nvim',
@@ -172,56 +129,11 @@ return require('packer').startup {
         }
 
         use {
-            'lukas-reineke/indent-blankline.nvim',
-            event = 'BufRead',
-            config = function()
-                require("indent_blankline").setup {
-                    filetype_exclude = {
-                        "help",
-                        "vimwiki",
-                        "man",
-                        "gitmessengerpopup",
-                        "diagnosticpopup",
-                        "lspinfo",
-                        "packer",
-                        "Trouble",
-                        "TelescopePrompt",
-                        "TelescopeResults",
-                    },
-                    buftype_exclude = { "terminal" },
-                    space_char_blankline = " ",
-                    show_foldtext = false,
-                    strict_tabs = true,
-                    debug = true,
-                    disable_with_nolist = true,
-                    max_indent_increase = 1,
-                    show_current_context = true,
-                    context_patterns = {
-                        "class",
-                        "function",
-                        "method",
-                        "^if",
-                        "while",
-                        "for",
-                        "with",
-                        "func_literal",
-                        "block",
-                        "try",
-                        "except",
-                        "argument_list",
-                        "object",
-                        "dictionary",
-                        "element",
-                    },
-                }
-            end
-        }
-
-        use {
             'nvim-lualine/lualine.nvim',
             config = function()
                 require('lualine').setup {
                     options = {
+                        globalstatus = true,
                         icons_enabled = false,
                         theme = 'palenight'
                     }
@@ -246,6 +158,15 @@ return require('packer').startup {
         }
 
         use {
+            'beauwilliams/focus.nvim',
+            config = function()
+                require("focus").setup {
+                    cursorline = false,
+                }
+            end
+        }
+
+        use {
             'lewis6991/gitsigns.nvim',
             requires = { 'nvim-lua/plenary.nvim' },
             event = 'BufRead',
@@ -260,35 +181,6 @@ return require('packer').startup {
                     },
                     current_line_blame = true,
                 }
-            end
-        }
-
-        use {
-            'jose-elias-alvarez/null-ls.nvim',
-            requires = { 'nvim-lua/plenary.nvim' },
-            event = 'BufRead',
-            config = function()
-                require("null-ls").setup {
-                    sources = {
-                        require("null-ls").builtins.code_actions.gitsigns,
-                    },
-                }
-            end
-        }
-
-        use {
-            'beauwilliams/focus.nvim',
-            config = function()
-                require("focus").setup {
-                    cursorline = false,
-                }
-            end
-        }
-
-        use {
-            'luukvbaal/stabilize.nvim',
-            config = function()
-                require("stabilize").setup()
             end
         }
 
@@ -311,29 +203,10 @@ return require('packer').startup {
             end
         }
 
-        use 'ggandor/lightspeed.nvim'
-
         use {
-            'numToStr/Comment.nvim',
-            event = 'BufRead',
+            'luukvbaal/stabilize.nvim',
             config = function()
-                require('Comment').setup {
-                    pre_hook = function(ctx)
-                        local U = require 'Comment.utils'
-
-                        local location = nil
-                        if ctx.ctype == U.ctype.block then
-                            location = require('ts_context_commentstring.utils').get_cursor_location()
-                        elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-                            location = require('ts_context_commentstring.utils').get_visual_start_location()
-                        end
-
-                        return require('ts_context_commentstring.internal').calculate_commentstring {
-                            key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
-                            location = location,
-                        }
-                    end,
-                }
+                require("stabilize").setup()
             end
         }
 

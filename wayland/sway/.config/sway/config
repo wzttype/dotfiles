@@ -25,9 +25,11 @@ for_window {
     [app_id="firefox"] inhibit_idle fullscreen
     [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
+    [app_id="firefox" title="^Library$"] floating enable
     [app_id="librewolf"] inhibit_idle fullscreen
     [app_id="librewolf" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="librewolf" title="^About LibreWolf$"] floating enable
+    [app_id="librewolf" title="^Library$"] floating enable
     [app_id="vivladi-stable"] inhibit_idle fullscreen
     [app_id="mpv"] inhibit_idle fullscreen
     [app_id="pqiv"] floating enable
