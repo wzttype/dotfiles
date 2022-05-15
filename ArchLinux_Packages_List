@@ -9,6 +9,7 @@ browserpass-firefox
 chromium
 clang
 clash
+dos2unix
 entr
 fd
 firefox
@@ -45,9 +46,10 @@ tlp
 tmux
 transmission-cli
 ttf-ibm-plex
-ttf-sarasa-gothic
 udisks2
+unzip
 vulkan-radeon
+wqy-microhei
 zathura
 zathura-pdf-mupdf
 zoxide

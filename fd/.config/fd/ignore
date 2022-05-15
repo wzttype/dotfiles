@@ -3,6 +3,7 @@ Documents/password-store
 .config/vivaldi
 .mozilla
 .librewolf
+.config/chromium
 .local/share/fish/generated_completions
 .local/share/nvim
 .vim/plugged

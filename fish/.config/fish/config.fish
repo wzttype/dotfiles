@@ -5,6 +5,7 @@ if status is-interactive
     function getalias; abbr -ag $argv; end
     function getpath; set -x fish_user_paths $argv; end
     source ~/.config/environment
+    zoxide init fish | source
 end
 
 function man --description "manpages using the less pager but with colors"
@@ -18,5 +19,3 @@ function man --description "manpages using the less pager but with colors"
 
     command man $argv
 end
-
-zoxide init fish | source

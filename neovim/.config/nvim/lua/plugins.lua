@@ -75,6 +75,15 @@ return require('packer').startup {
             end
         }
 
+        use {
+            'neovim/nvim-lspconfig',
+            config = function()
+                -- require'lspconfig'.ltex.setup()
+            end
+        }
+
+        use 'williamboman/nvim-lsp-installer'
+
         use 'ibhagwan/fzf-lua'
 
         use {
@@ -83,6 +92,26 @@ return require('packer').startup {
             config = function()
                 require('mini.comment').setup()
                 require('mini.indentscope').setup()
+                require('mini.surround').setup {
+                    custom_surroundings = {
+                        ['('] = { output = { left = '( ', right = ' )' } },
+                        ['['] = { output = { left = '[ ', right = ' ]' } },
+                        ['{'] = { output = { left = '{ ', right = ' }' } },
+                        ['<'] = { output = { left = '< ', right = ' >' } },
+                    },
+                    mappings = {
+                        add = 'ys',
+                        delete = 'ds',
+                        find = '',
+                        find_left = '',
+                        highlight = '',
+                        replace = 'cs',
+                        update_n_lines = '',
+                    },
+                    search_method = 'cover_or_next',
+                }
+                vim.api.nvim_set_keymap('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { noremap = true })
+                vim.api.nvim_set_keymap('n', 'yss', 'ys_', { noremap = false })
                 require('mini.trailspace').setup()
             end
         }
@@ -185,7 +214,7 @@ return require('packer').startup {
         }
 
         use {
-            'chentau/marks.nvim',
+            'chentoast/marks.nvim',
             config = function()
                 require'marks'.setup {
                     default_mappings = true,
@@ -209,6 +238,8 @@ return require('packer').startup {
                 require("stabilize").setup()
             end
         }
+
+        -- use 'miversen33/netman.nvim'
 
     end,
 
