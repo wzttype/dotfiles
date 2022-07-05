@@ -9,7 +9,3 @@
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [difftool]
     prompt = false
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-[url "git://gist.github.com/"]
-    insteadOf = "gist:"

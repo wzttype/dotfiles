@@ -46,7 +46,6 @@ return require('packer').startup {
                         "lua",
                         "yaml",
                         "json",
-                        "vim",
                         "markdown",
                         "latex",
                         "ledger",
@@ -238,8 +237,6 @@ return require('packer').startup {
                 require("stabilize").setup()
             end
         }
-
-        -- use 'miversen33/netman.nvim'
 
     end,
 
