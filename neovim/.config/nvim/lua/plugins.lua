@@ -55,6 +55,15 @@ return require('packer').startup {
                         use_languages = true,
                         additional_vim_regex_highlighting = true,
                     },
+                    incremental_selection = {
+                        enable = true,
+                        keymaps = {
+                            init_selection = "<CR>",
+                            scope_incremental = "<CR>",
+                            node_incremental = "<TAB>",
+                            node_decremental = "<S-TAB>",
+                        },
+                    },
                 }
                 require'nvim-treesitter.install'.compilers = { "clang", "gcc" }
                 require'nvim-treesitter.install'.prefer_git = true
@@ -91,6 +100,7 @@ return require('packer').startup {
             config = function()
                 require('mini.comment').setup()
                 require('mini.indentscope').setup()
+                require('mini.pairs').setup()
                 require('mini.surround').setup {
                     custom_surroundings = {
                         ['('] = { output = { left = '( ', right = ' )' } },
@@ -111,7 +121,6 @@ return require('packer').startup {
                 }
                 vim.api.nvim_set_keymap('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { noremap = true })
                 vim.api.nvim_set_keymap('n', 'yss', 'ys_', { noremap = false })
-                require('mini.trailspace').setup()
             end
         }
 
@@ -125,6 +134,17 @@ return require('packer').startup {
         }
 
         use 'ggandor/lightspeed.nvim'
+
+        use {
+            'kevinhwang91/nvim-bqf',
+            event = 'BufRead',
+            ft = 'qf',
+            config = function()
+                require('bqf').setup()
+            end
+        }
+
+        use 'miversen33/netman.nvim'
 
         use {
             'EdenEast/nightfox.nvim',
@@ -148,15 +168,6 @@ return require('packer').startup {
         vim.cmd("colorscheme nightfox")
 
         use {
-            'kevinhwang91/nvim-bqf',
-            event = 'BufRead',
-            ft = 'qf',
-            config = function()
-                require('bqf').setup()
-            end
-        }
-
-        use {
             'nvim-lualine/lualine.nvim',
             config = function()
                 require('lualine').setup {
@@ -174,6 +185,13 @@ return require('packer').startup {
             event = 'BufRead',
             config = function()
                 require('neoscroll').setup()
+            end
+        }
+
+        use {
+            'stevearc/aerial.nvim',
+            config = function()
+                require('aerial').setup()
             end
         }
 

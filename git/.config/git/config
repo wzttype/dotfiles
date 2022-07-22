@@ -9,3 +9,7 @@
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [difftool]
     prompt = false
+[http]
+    proxy = socks5://127.0.0.1:1080
+[https]
+    proxy = socks5://127.0.0.1:1080
