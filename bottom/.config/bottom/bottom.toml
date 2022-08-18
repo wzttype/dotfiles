@@ -1,6 +1,5 @@
 [flags]
 group_processes = true
-basic = true
-hide_table_gap = true
-disable_click = true
 battery = true
+temperature_type = "celsius"
+disable_click = true

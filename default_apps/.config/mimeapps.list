@@ -1,5 +1,8 @@
+[Added Associations]
+[Removed Associations]
 [Default Applications]
 image/jpeg=pqiv.desktop
 image/png=pqiv.desktop
+image/gif=pqiv.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/epub+zip=org.pwmt.zathura.desktop

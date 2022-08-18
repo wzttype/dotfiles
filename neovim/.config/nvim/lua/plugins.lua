@@ -71,22 +71,9 @@ return require('packer').startup {
         }
 
         use {
-            'jose-elias-alvarez/null-ls.nvim',
-            requires = { 'nvim-lua/plenary.nvim' },
-            event = 'BufRead',
-            config = function()
-                require("null-ls").setup {
-                    sources = {
-                        require("null-ls").builtins.code_actions.gitsigns,
-                    },
-                }
-            end
-        }
-
-        use {
             'neovim/nvim-lspconfig',
             config = function()
-                -- require'lspconfig'.ltex.setup()
+                require'lspconfig'.marksman.setup{}
             end
         }
 
