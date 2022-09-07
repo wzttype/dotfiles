@@ -8,6 +8,7 @@ bottom
 brightnessctl
 browserpass
 browserpass-firefox
+chromium
 clang
 clash
 dos2unix
@@ -74,7 +75,7 @@ xclip           wl-clipboard
 xdotool         wtype
 scrot           grim
 scrot           slurp
-dunst           mako
+dunst           mako libnotify
 rofi            wldash
 rofi-pass
 unclutter       sway

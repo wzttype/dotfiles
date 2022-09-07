@@ -1,5 +1,5 @@
 # Software
-# exec mako
+exec mako
 
 # Touchpad
 input type:touchpad {

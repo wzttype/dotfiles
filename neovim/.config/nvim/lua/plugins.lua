@@ -41,8 +41,6 @@ return require('packer').startup {
             config = function()
                 require'nvim-treesitter.configs'.setup {
                     ensure_installed = {
-                        "bash",
-                        "fish",
                         "lua",
                         "yaml",
                         "json",
@@ -131,8 +129,6 @@ return require('packer').startup {
             end
         }
 
-        use 'miversen33/netman.nvim'
-
         use {
             'EdenEast/nightfox.nvim',
             config = function()
@@ -155,14 +151,12 @@ return require('packer').startup {
         vim.cmd("colorscheme nightfox")
 
         use {
-            'nvim-lualine/lualine.nvim',
+            'strash/everybody-wants-that-line.nvim',
             config = function()
-                require('lualine').setup {
-                    options = {
-                        globalstatus = true,
-                        icons_enabled = false,
-                        theme = 'palenight'
-                    }
+                require('everybody-wants-that-line').setup {
+                    filepath = {
+                        shorten = true,
+                    },
                 }
             end
         }
@@ -183,7 +177,7 @@ return require('packer').startup {
         }
 
         use {
-            'norcalli/nvim-colorizer.lua',
+            'NvChad/nvim-colorizer.lua',
             event = 'BufRead',
             config = function()
                 require'colorizer'.setup()
