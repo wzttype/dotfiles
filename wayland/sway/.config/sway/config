@@ -80,13 +80,13 @@ set $right l
 
 # Basics:
 
-# Start a terminal
+# Start terminal emulator
 bindsym $mod+Return exec foot
 
 # Kill focused window
 bindsym $mod+BackSpace kill
 
-# Start your launcher
+# Start launcher
 bindsym $mod+d exec wldash
 
 # Volume

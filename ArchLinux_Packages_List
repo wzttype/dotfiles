@@ -2,19 +2,16 @@ amd-ucode
 aria2
 base
 bat
-bemenu
 booster
 bottom
 brightnessctl
-browserpass
-browserpass-firefox
 chromium
 clang
 clash
 dos2unix
 entr
 fd
-firefox
+firefox libnotify
 fish
 foot
 fzf
@@ -35,7 +32,6 @@ nnn
 openssh
 p7zip
 pass
-pinentry-bemenu
 pipewire
 pipewire-pulse
 pqiv
@@ -76,7 +72,7 @@ xdotool         wtype
 scrot           grim
 scrot           slurp
 dunst           mako libnotify
-rofi            wldash
-rofi-pass
+rofi            wldash bemenu
+rofi-pass       pinentry-bemenu browserpass browserpass-firefox
 unclutter       sway
 xf86-video-amdgpu

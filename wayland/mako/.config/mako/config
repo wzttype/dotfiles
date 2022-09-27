@@ -9,7 +9,10 @@ border-size=2
 border-color=#414868
 border-radius=5
 default-timeout=10000
-group-by=summary
-
-[grouped]
-format=<b>%s</b>\n%b
+[urgency=low]
+border-color=#cccccc
+[urgency=normal]
+border-color=#d08770
+[urgency=high]
+border-color=#bf616a
+default-timeout=0
