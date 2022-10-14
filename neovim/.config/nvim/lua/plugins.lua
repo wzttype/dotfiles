@@ -17,8 +17,6 @@ return require('packer').startup {
 
         use 'wbthomason/packer.nvim'
 
-        use 'nathom/filetype.nvim'
-
         use {
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
@@ -118,37 +116,22 @@ return require('packer').startup {
             end
         }
 
-        use 'ggandor/lightspeed.nvim'
-
         use {
-            'kevinhwang91/nvim-bqf',
-            event = 'BufRead',
-            ft = 'qf',
+            'ggandor/leap.nvim',
             config = function()
-                require('bqf').setup()
+                require('leap').add_default_mappings()
             end
         }
 
         use {
-            'EdenEast/nightfox.nvim',
+            "catppuccin/nvim",
+            as = "catppuccin",
             config = function()
-                require('nightfox').setup {
-                    options = {
-                        styles = {
-                            comments = "italic",
-                            keywords = "bold",
-                            functions = "italic,bold",
-                        },
-                        inverse = {
-                            match_paren = true,
-                            visual = true,
-                            search = true,
-                        },
-                    }
-                }
+                vim.g.catppuccin_flavour = "frappe"  -- latte, mocha, frappe, macchiato
+                require("catppuccin").setup()
+                vim.api.nvim_command "colorscheme catppuccin"
             end
         }
-        vim.cmd("colorscheme nightfox")
 
         use {
             'strash/everybody-wants-that-line.nvim',
@@ -195,7 +178,6 @@ return require('packer').startup {
 
         use {
             'lewis6991/gitsigns.nvim',
-            requires = { 'nvim-lua/plenary.nvim' },
             event = 'BufRead',
             config = function()
                 require('gitsigns').setup {
@@ -227,13 +209,6 @@ return require('packer').startup {
                     },
                     mappings = {}
                 }
-            end
-        }
-
-        use {
-            'luukvbaal/stabilize.nvim',
-            config = function()
-                require("stabilize").setup()
             end
         }
 

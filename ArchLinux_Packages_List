@@ -3,20 +3,19 @@ aria2
 base
 bat
 booster
-bottom
 brightnessctl
+btop
 chromium
 clang
 clash
+diff-so-fancy
 dos2unix
 entr
 fd
-firefox libnotify
 fish
 foot
 fzf
 git
-git-delta
 iwd
 ledger
 librewolf
@@ -51,6 +50,8 @@ ttf-ibm-plex
 udisks2
 unzip
 upower
+vivaldi
+vivaldi-ffmpeg-codecs
 vulkan-radeon
 wqy-microhei
 zathura
@@ -71,8 +72,8 @@ xclip           wl-clipboard
 xdotool         wtype
 scrot           grim
 scrot           slurp
-dunst           mako libnotify
+dunst           mako
 rofi            wldash bemenu
-rofi-pass       pinentry-bemenu browserpass browserpass-firefox
+rofi-pass       pinentry-bemenu browserpass browserpass-chromium
 unclutter       sway
 xf86-video-amdgpu

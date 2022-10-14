@@ -1,5 +1,0 @@
-[flags]
-group_processes = true
-battery = true
-temperature_type = "celsius"
-disable_click = true

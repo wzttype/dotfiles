@@ -3,10 +3,6 @@
 [user]
     name = wzttype
     email = wzttype@outlook.com
-[diff]
-    tool = nvimdiff
-[difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [difftool]
     prompt = false
 [http]
@@ -14,16 +10,6 @@
 [https]
     proxy = socks5://127.0.0.1:1080
 [core]
-    pager = delta
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
-    diffFilter = delta --color-only
-[add.interactive]
-    useBuiltin = false
-[delta]
-    navigate = true
-    light = false
-    side-by-side = true
-[merge]
-    conflictstyle = diff3
-[diff]
-    colorMoved = default
+    diffFilter = diff-so-fancy --patch

@@ -1,18 +1,19 @@
 anchor=top-center
 font=IBMPlexMono Regular 15
-background-color=#24283b
-text-color=#c0caf5
 width=650
 margin=0,20,20
 padding=10
 border-size=2
-border-color=#414868
 border-radius=5
 default-timeout=10000
-[urgency=low]
-border-color=#cccccc
-[urgency=normal]
-border-color=#d08770
-[urgency=high]
-border-color=#bf616a
 default-timeout=0
+
+# Colors
+
+background-color=#eff1f5
+text-color=#4c4f69
+border-color=#1e66f5
+progress-color=over #ccd0da
+[urgency=high]
+border-color=#fe640b
+
