@@ -1,7 +1,6 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  packer_bootstrap = vim.fn.system({
     "git",
     "clone",
     "--depth",
@@ -75,7 +74,24 @@ return require('packer').startup {
 
         use 'williamboman/nvim-lsp-installer'
 
-        use 'ibhagwan/fzf-lua'
+        use {
+            'hrsh7th/nvim-cmp',
+            requires = {
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
+            },
+            config = function()
+            end
+        }
+        use {
+            'ibhagwan/fzf-lua',
+            config = function()
+                vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
+            end
+        }
 
         use {
             'echasnovski/mini.nvim',
@@ -102,17 +118,18 @@ return require('packer').startup {
                     },
                     search_method = 'cover_or_next',
                 }
+                vim.api.nvim_del_keymap('x', 'ys')
                 vim.api.nvim_set_keymap('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { noremap = true })
                 vim.api.nvim_set_keymap('n', 'yss', 'ys_', { noremap = false })
             end
         }
 
+        use 'kevinhwang91/nvim-bqf'
+
         use {
-            'nyngwang/NeoRoot.lua',
+            "ahmedkhalf/project.nvim",
             config = function()
-                require('neo-root').setup {
-                    CUR_MODE = 2
-                }
+                require("project_nvim").setup()
             end
         }
 
@@ -128,7 +145,16 @@ return require('packer').startup {
             as = "catppuccin",
             config = function()
                 vim.g.catppuccin_flavour = "frappe"  -- latte, mocha, frappe, macchiato
-                require("catppuccin").setup()
+                require("catppuccin").setup {
+                    integrations = {
+                        aerial = true,
+                        gitsigns = true,
+                        leap = true,
+                        cmp = true,
+                        treesitter = true,
+                        ts_rainbow = true,
+                    }
+                }
                 vim.api.nvim_command "colorscheme catppuccin"
             end
         }

@@ -1,7 +1,7 @@
 ignore-empty-password
 disable-caps-lock-text
 indicator-caps-lock
-color=0AAEB3
+color=303446
 
 # Text color
 font-size=50

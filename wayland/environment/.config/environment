@@ -7,8 +7,9 @@ getenv MANPAGER less
 getenv MANPATH /usr/share/man
 getenv LESSHISTFILE /dev/null
 getenv GDK_BACKEND wayland
+getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
 getenv FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
-getenv FZF_DEFAULT_OPTS '--height 40% --reverse'
+getenv FZF_DEFAULT_OPTS '--height 40% --reverse --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284'
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
 
 getalias la 'ls -Alh --group-directories-first --file-type --color=auto'
