@@ -85,46 +85,70 @@ return require('packer').startup {
             config = function()
             end
         }
+
         use {
             'ibhagwan/fzf-lua',
             config = function()
                 vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
                 vim.api.nvim_set_keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<leader>g', "<cmd>lua require('fzf-lua').live_grep()<CR>", { noremap = true, silent = true })
             end
         }
 
         use {
-            'echasnovski/mini.nvim',
+            'echasnovski/mini.align',
             event = 'BufRead',
             config = function()
-                require('mini.comment').setup()
-                require('mini.indentscope').setup()
-                require('mini.pairs').setup()
-                require('mini.surround').setup {
-                    custom_surroundings = {
-                        ['('] = { output = { left = '( ', right = ' )' } },
-                        ['['] = { output = { left = '[ ', right = ' ]' } },
-                        ['{'] = { output = { left = '{ ', right = ' }' } },
-                        ['<'] = { output = { left = '< ', right = ' >' } },
-                    },
-                    mappings = {
-                        add = 'ys',
-                        delete = 'ds',
-                        find = '',
-                        find_left = '',
-                        highlight = '',
-                        replace = 'cs',
-                        update_n_lines = '',
-                    },
-                    search_method = 'cover_or_next',
-                }
-                vim.api.nvim_del_keymap('x', 'ys')
-                vim.api.nvim_set_keymap('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { noremap = true })
-                vim.api.nvim_set_keymap('n', 'yss', 'ys_', { noremap = false })
+                require('mini.align').setup()
             end
         }
 
-        use 'kevinhwang91/nvim-bqf'
+        use {
+            'echasnovski/mini.comment',
+            event = 'BufRead',
+            config = function()
+                require('mini.comment').setup()
+            end
+        }
+
+        use {
+            'echasnovski/mini.indentscope',
+            event = 'BufRead',
+            config = function()
+                require('mini.indentscope').setup()
+            end
+        }
+
+        use {
+            'echasnovski/mini.pairs',
+            event = 'BufRead',
+            config = function()
+                require('mini.pairs').setup()
+            end
+        }
+
+        use {
+            'echasnovski/mini.surround',
+            event = 'BufRead',
+            config = function()
+                require('mini.surround').setup {
+                    mappings = {
+                        add = '<leader>sa',
+                        delete = '<leader>sd',
+                        find = '',
+                        find_left = '',
+                        highlight = '',
+                        replace = '<leader>sr',
+                        update_n_lines = '',
+                    }
+                }
+            end
+        }
+
+        use {
+            'kevinhwang91/nvim-bqf',
+            event = 'BufRead'
+        }
 
         use {
             "ahmedkhalf/project.nvim",
@@ -135,6 +159,7 @@ return require('packer').startup {
 
         use {
             'ggandor/leap.nvim',
+            event = 'BufRead',
             config = function()
                 require('leap').add_default_mappings()
             end
@@ -144,8 +169,12 @@ return require('packer').startup {
             "catppuccin/nvim",
             as = "catppuccin",
             config = function()
-                vim.g.catppuccin_flavour = "frappe"  -- latte, mocha, frappe, macchiato
                 require("catppuccin").setup {
+                    flavour = "frappe",
+                    background = {
+                        light = 'latte',
+                        dark = 'frappe',
+                    },
                     integrations = {
                         aerial = true,
                         gitsigns = true,
@@ -163,8 +192,8 @@ return require('packer').startup {
             'strash/everybody-wants-that-line.nvim',
             config = function()
                 require('everybody-wants-that-line').setup {
-                    filepath = {
-                        shorten = true,
+                    buffer = {
+                        max_symbols = 0,
                     },
                 }
             end
@@ -180,6 +209,7 @@ return require('packer').startup {
 
         use {
             'stevearc/aerial.nvim',
+            event = 'BufRead',
             config = function()
                 require('aerial').setup()
             end
@@ -195,6 +225,7 @@ return require('packer').startup {
 
         use {
             'beauwilliams/focus.nvim',
+            event = 'BufRead',
             config = function()
                 require("focus").setup {
                     cursorline = false,
@@ -221,22 +252,17 @@ return require('packer').startup {
 
         use {
             'chentoast/marks.nvim',
+            event = 'BufRead',
             config = function()
-                require'marks'.setup {
+                require('marks').setup {
                     default_mappings = true,
-                    builtin_marks = { ".", "<", ">", "^" },
-                    cyclic = true,
-                    force_write_shada = false,
-                    refresh_interval = 250,
-                    sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
-                    bookmark_0 = {
-                        sign = "⚑",
-                        virt_text = "hello world"
-                    },
+                    signs = true,
                     mappings = {}
                 }
             end
         }
+
+        use 'elihunter173/dirbuf.nvim'
 
     end,
 

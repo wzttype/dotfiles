@@ -1,0 +1,19 @@
+getenv EDITOR nvim
+getenv LANG en_US.UTF-8
+getenv LC_CTYPE en_US.UTF-8
+getenv VISUAL nvim
+getenv TERM xterm-256color
+getenv MANPAGER less
+getenv MANPATH /usr/share/man
+getenv LESSHISTFILE /dev/null
+getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
+getenv FZF_DEFAULT_COMMAND 'fd --hidden --follow --exclude .git'
+getenv FZF_DEFAULT_OPTS '--reverse --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284'
+getenv PASSWORD_STORE_DIR ~/Documents/password-store
+
+getalias la 'ls -A --group-directories-first'
+getalias kill "ps -ef | fzf | awk '{print $2}' | xargs kill -9"
+getalias td 'transmission-daemon'
+getalias tr 'transmission-remote'
+
+getpath ~/Documents/Exec

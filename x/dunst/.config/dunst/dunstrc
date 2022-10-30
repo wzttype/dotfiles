@@ -18,7 +18,7 @@
     frame_color = "#1E66F5"
     separator_color= frame
     ### Text ###
-    font = IBMPlexMono-Regular 15
+    font = SauceCodePro Nerd Font Mono-Regular 15
     line_height = 5
     markup = full
     format = "<b>%s</b>\n%b"

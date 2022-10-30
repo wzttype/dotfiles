@@ -1,9 +1,9 @@
 [Added Associations]
 [Removed Associations]
 [Default Applications]
-image/jpeg=pqiv.desktop
-image/png=pqiv.desktop
-image/gif=pqiv.desktop
-image/webp=pqiv.desktop
+image/jpeg=swayimg.desktop
+image/png=swayimg.desktop
+image/gif=swayimg.desktop
+image/webp=swayimg.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/epub+zip=org.pwmt.zathura.desktop

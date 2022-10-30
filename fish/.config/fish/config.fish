@@ -5,5 +5,6 @@ if status is-interactive
     function getalias; abbr -ag $argv; end
     function getpath; set -x fish_user_paths $argv; end
     source ~/.config/environment
+    source ~/.config/environment_wayland
     zoxide init fish | source
 end
