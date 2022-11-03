@@ -1,3 +1,4 @@
+*.log
 /vim/.vim/plugged/
 /neovim/.local/share/nvim/
 /neovim/.config/nvim/plugin/
