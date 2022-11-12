@@ -1,42 +1,25 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
-vim.api.nvim_command("packadd packer.nvim")
+local packer_bootstrap = ensure_packer()
 
-return require('packer').startup {
+return require("packer").startup({
     function()
 
-        use 'wbthomason/packer.nvim'
+        use "wbthomason/packer.nvim"
 
         use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            event = 'BufRead',
-            requires = {
-                {
-                    'p00f/nvim-ts-rainbow',
-                    after = { 'nvim-treesitter' },
-                    config = function()
-                        require'nvim-treesitter.configs'.setup {
-                            rainbow = {
-                                enable = true,
-                                entended_mode = true,
-                                max_file_lines = nil,
-                            }
-                        }
-                    end
-                },
-            },
+            "nvim-treesitter/nvim-treesitter",
+            run = ":TSUpdate",
             config = function()
-                require'nvim-treesitter.configs'.setup {
+                require("nvim-treesitter.configs").setup({
                     ensure_installed = {
                         "lua",
                         "yaml",
@@ -59,95 +42,127 @@ return require('packer').startup {
                             node_decremental = "<S-TAB>",
                         },
                     },
-                }
-                require'nvim-treesitter.install'.compilers = { "clang", "gcc" }
-                require'nvim-treesitter.install'.prefer_git = true
+                    indent = {
+                        enable = true
+                    }
+                })
+                require"nvim-treesitter.install".compilers = { "clang", "gcc" }
+                require"nvim-treesitter.install".prefer_git = true
             end
         }
 
         use {
-            'neovim/nvim-lspconfig',
+            "p00f/nvim-ts-rainbow",
             config = function()
-                require'lspconfig'.marksman.setup{}
+                require("nvim-treesitter.configs").setup({
+                    rainbow = {
+                        enable = true,
+                        extended_mode = true,
+                        max_file_lines = nil
+                    }
+                })
             end
         }
 
-        use 'williamboman/nvim-lsp-installer'
+        use {
+            "neovim/nvim-lspconfig",
+            config = function()
+                require("lspconfig").marksman.setup{}
+            end
+        }
+
+        use "williamboman/nvim-lsp-installer"
 
         use {
-            'hrsh7th/nvim-cmp',
+            "hrsh7th/nvim-cmp",
             requires = {
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-buffer',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-cmdline',
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-cmdline",
             },
             config = function()
             end
         }
 
         use {
-            'ibhagwan/fzf-lua',
+            "ibhagwan/fzf-lua",
             config = function()
-                vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<leader>g', "<cmd>lua require('fzf-lua').live_grep()<CR>", { noremap = true, silent = true })
-            end
-        }
-
-        use {
-            'echasnovski/mini.align',
-            event = 'BufRead',
-            config = function()
-                require('mini.align').setup()
-            end
-        }
-
-        use {
-            'echasnovski/mini.comment',
-            event = 'BufRead',
-            config = function()
-                require('mini.comment').setup()
-            end
-        }
-
-        use {
-            'echasnovski/mini.indentscope',
-            event = 'BufRead',
-            config = function()
-                require('mini.indentscope').setup()
-            end
-        }
-
-        use {
-            'echasnovski/mini.pairs',
-            event = 'BufRead',
-            config = function()
-                require('mini.pairs').setup()
-            end
-        }
-
-        use {
-            'echasnovski/mini.surround',
-            event = 'BufRead',
-            config = function()
-                require('mini.surround').setup {
-                    mappings = {
-                        add = '<leader>sa',
-                        delete = '<leader>sd',
-                        find = '',
-                        find_left = '',
-                        highlight = '',
-                        replace = '<leader>sr',
-                        update_n_lines = '',
+                require("fzf-lua").setup {
+                    winopts = {
+                        border = "single",
+                        preview = {
+                            border = "noborder"
+                        }
                     }
                 }
+                vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { noremap = true, silent = true })
             end
         }
 
         use {
-            'kevinhwang91/nvim-bqf',
-            event = 'BufRead'
+            "echasnovski/mini.align",
+            config = function()
+                require("mini.align").setup()
+            end
+        }
+
+        use {
+            "echasnovski/mini.comment",
+            config = function()
+                require("mini.comment").setup()
+            end
+        }
+
+        use {
+            "echasnovski/mini.indentscope",
+            event = "BufReadPre",
+            config = function()
+                require("mini.indentscope").setup()
+            end
+        }
+
+        use {
+            "echasnovski/mini.pairs",
+            config = function()
+                require("mini.pairs").setup()
+            end
+        }
+
+        use {
+            "echasnovski/mini.surround",
+            config = function()
+                require("mini.surround").setup({
+                    mappings = {
+                        add = "<leader>sa",
+                        delete = "<leader>sd",
+                        find = "",
+                        find_left = "",
+                        highlight = "",
+                        replace = "<leader>sr",
+                        update_n_lines = "",
+                    }
+                })
+            end
+        }
+
+        use {
+            "kevinhwang91/nvim-bqf",
+            ft = "qf",
+            config = function()
+                require("bqf").setup({
+                    auto_enable = true,
+                    auto_resize_height = true,
+                    preview = {
+                        win_height = 12,
+                        win_vheight = 12,
+                        delay_syntax = 80,
+                        border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+                    }
+                })
+            end
         }
 
         use {
@@ -158,10 +173,14 @@ return require('packer').startup {
         }
 
         use {
-            'ggandor/leap.nvim',
-            event = 'BufRead',
+            "https://gitlab.com/madyanov/svart.nvim",
+            event = "BufRead",
             config = function()
-                require('leap').add_default_mappings()
+                require("svart").configure({
+                    ui_dim_content = false,
+                })
+                vim.api.nvim_set_keymap("n", "s", "<cmd>Svart<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap("n", "S", "<cmd>SvartRepeat<CR>", { noremap = true, silent = true })
             end
         }
 
@@ -169,12 +188,9 @@ return require('packer').startup {
             "catppuccin/nvim",
             as = "catppuccin",
             config = function()
-                require("catppuccin").setup {
+                require("catppuccin").setup({
                     flavour = "frappe",
-                    background = {
-                        light = 'latte',
-                        dark = 'frappe',
-                    },
+                    transparent_background = true,
                     integrations = {
                         aerial = true,
                         gitsigns = true,
@@ -183,96 +199,76 @@ return require('packer').startup {
                         treesitter = true,
                         ts_rainbow = true,
                     }
-                }
+                })
                 vim.api.nvim_command "colorscheme catppuccin"
             end
         }
 
+
         use {
-            'strash/everybody-wants-that-line.nvim',
+            "rebelot/heirline.nvim",
             config = function()
-                require('everybody-wants-that-line').setup {
-                    buffer = {
-                        max_symbols = 0,
-                    },
-                }
+                require("heirline").setup(statusline)
             end
         }
 
         use {
-            'karb94/neoscroll.nvim',
-            event = 'BufRead',
+            "karb94/neoscroll.nvim",
+            event = "BufRead",
             config = function()
-                require('neoscroll').setup()
+                require("neoscroll").setup()
             end
         }
 
         use {
-            'stevearc/aerial.nvim',
-            event = 'BufRead',
+            "stevearc/aerial.nvim",
+            cmd = "AerialToggle",
             config = function()
-                require('aerial').setup()
+                require("aerial").setup()
             end
         }
 
         use {
-            'NvChad/nvim-colorizer.lua',
-            event = 'BufRead',
+            "NvChad/nvim-colorizer.lua",
             config = function()
-                require'colorizer'.setup()
+                require("colorizer").setup()
             end
         }
 
         use {
-            'beauwilliams/focus.nvim',
-            event = 'BufRead',
+            "beauwilliams/focus.nvim",
             config = function()
-                require("focus").setup {
+                require("focus").setup({
+                    hybridnumber = true,
                     cursorline = false,
-                }
+                })
             end
         }
 
         use {
-            'lewis6991/gitsigns.nvim',
-            event = 'BufRead',
+            "lewis6991/gitsigns.nvim",
             config = function()
-                require('gitsigns').setup {
+                require("gitsigns").setup({
                     signs = {
-                        add = {text = '▍'},
-                        change = {text = '▍'},
-                        delete = {text = '▁'},
-                        topdelete = {text = '▔'},
-                        changedelete = {text = '█'},
+                        add = {text = "▍"},
+                        change = {text = "▍"},
+                        delete = {text = "▁"},
+                        topdelete = {text = "▔"},
+                        changedelete = {text = "█"},
                     },
                     current_line_blame = true,
-                }
+                })
             end
         }
-
-        use {
-            'chentoast/marks.nvim',
-            event = 'BufRead',
-            config = function()
-                require('marks').setup {
-                    default_mappings = true,
-                    signs = true,
-                    mappings = {}
-                }
-            end
-        }
-
-        use 'elihunter173/dirbuf.nvim'
 
     end,
 
     config = {
-        git = {
-            clone_timeout = 600
-        },
         display = {
             open_fn = function()
-            return require('packer.util').float{ border = "single" }
+                return require("packer.util").float({
+                    border = "single"
+                })
             end,
             prompt_border = "single",
         },
@@ -280,4 +276,4 @@ return require('packer').startup {
             enable = true
         }
     }
-}
+})

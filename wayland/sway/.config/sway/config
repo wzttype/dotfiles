@@ -19,26 +19,6 @@ output eDP-1 mode 1920x1080@60Hz
 # Wallpaper
 output eDP-1 bg $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill
 
-# Floating windows
-for_window {
-    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
-    [app_id="firefox"] inhibit_idle fullscreen
-    [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
-    [app_id="firefox" title="^Library$"] floating enable
-    [app_id="librewolf"] inhibit_idle fullscreen
-    [app_id="librewolf" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="librewolf" title="^About LibreWolf$"] floating enable
-    [app_id="librewolf" title="^Library$"] floating enable
-    [app_id="vivladi-stable"] inhibit_idle fullscreen
-    [app_id="mpv"] inhibit_idle fullscreen
-    [app_id="pqiv"] floating enable
-    [window_role="pop-up"] floating enable
-    [window_role="bubble"] floating enable
-    [window_role="dialog"] floating enable
-    [window_type="dialog"] floating enable
-}
-
 # Xwayland
 xwayland disable
 
@@ -56,11 +36,16 @@ gaps inner 8
 gaps outer 8
 
 # Colors
-# class                 border   backgr.  text     indicator  child_border
-client.focused          #7aa2f7  #414868  #c0caf5  #7dcfff    #7aa2f7
-client.focused_inactive #7aa2f7  #414868  #c0caf5  #7dcfff    #7aa2f7
-client.unfocused        #414868  #24283b  #a9b1d6  #7dcfff    #414868
-client.urgent           #e0af68  #e0af68  #1d202f  #7dcfff    #e0af68
+set $cl_high #8CAAEE
+set $cl_indi #9399b2
+set $cl_back #303446
+set $cl_fore #C6D0F5
+set $cl_urge #f38ba8
+# class                 border   background text     indicator childborder
+client.focused          $cl_high $cl_high   $cl_fore $cl_indi  $cl_high
+client.focused_inactive $cl_back $cl_back   $cl_fore $cl_back  $cl_back
+client.unfocused        $cl_back $cl_back   $cl_fore $cl_back  $cl_back
+client.urgent           $cl_urge $cl_urge   $cl_fore $cl_urge  $cl_urge
 
 #
 # Key bindings
@@ -78,7 +63,7 @@ set $down j
 set $up k
 set $right l
 
-# Basics:
+# Basics
 
 # Start terminal emulator
 bindsym $mod+Return exec foot
@@ -115,7 +100,7 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t custom -m 'Do you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
-# Moving around:
+# Moving around
 
 # Move your focus around
 bindsym $mod+$left focus left
@@ -141,7 +126,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Workspaces:
+# Workspaces
 
 # Define names for default workspaces for which we configure key bindings later on.
 set $ws1 "1"
@@ -179,7 +164,33 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# Layout stuff:
+# Floating window
+for_window {
+    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+    [app_id="firefox"] inhibit_idle fullscreen
+    [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
+    [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
+    [app_id="firefox" title="^Library$"] floating enable
+    [app_id="LibreWolf"] inhibit_idle fullscreen
+    [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
+    [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
+    [app_id="LibreWolf" title="^Library$"] floating enable
+    [title=".*Vivaldi$"] inhibit_idle fullscreen
+    [app_id="mpv"] inhibit_idle fullscreen
+    [app_id="pqiv"] floating enable
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+}
+
+# Assign window
+assign {
+    [title=".*Vivaldi$"] workspace number $ws4
+    [app_id="LibreWolf"] workspace number $ws5
+}
+
+# Layout
 
 # Split in horizontal orientation
 bindsym $mod+b splith
@@ -204,7 +215,7 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
-# Scratchpad:
+# Scratchpad
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -213,7 +224,7 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-# Resizing containers:
+# Resizing containers
 
 mode "resize" {
     bindsym $left resize shrink width 10px
