@@ -11,6 +11,7 @@ vim.opt.exrc = false
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileformat = "unix"
 vim.opt.formatoptions:remove { "c", "r", "o" }
+vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.iskeyword:append("-")
 vim.opt.laststatus = 3
@@ -29,7 +30,6 @@ vim.opt.showbreak = "↪"
 vim.opt.showmatch = true
 vim.opt.showmode = false
 vim.opt.sidescrolloff = 5
-vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.spellcapcheck = ""

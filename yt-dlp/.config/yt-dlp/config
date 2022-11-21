@@ -1,0 +1,13 @@
+# General Options
+--ignore-errors
+
+# Download Options
+--downloader aria2c
+
+# Filesystem Options
+-o "%(upload_date)s-%(title)s-%(uploader)s.%(ext)s"
+--restrict-filenames
+
+# Video Format Options
+--prefer-free-formats
+--check-formats

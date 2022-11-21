@@ -10,6 +10,8 @@ getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
 getenv FZF_DEFAULT_COMMAND "fd --hidden --follow --exclude .git"
 getenv FZF_DEFAULT_OPTS "-m --height ~40% --layout=reverse --no-color"
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
+getenv http_proxy "127.0.0.1:1081"
+getenv https_proxy $http_proxy
 
 getalias la "ls -A --group-directories-first"
 getalias kill "ps -ef | fzf | awk '{print $2}' | xargs kill -9"

@@ -1,0 +1,10 @@
+[flags]
+group_processes = true
+case_sensitive = false
+whole_word = false
+regex = false
+temperature_type = "celsius"
+basic = true
+battery = true
+color = "nord"
+mem_as_value = true
