@@ -3,14 +3,13 @@ vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.diffopt:append("algorithm:histogram")
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.expandtab = true
 vim.opt.exrc = false
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileformat = "unix"
-vim.opt.formatoptions:remove { "c", "r", "o" }
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.iskeyword:append("-")

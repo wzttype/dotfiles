@@ -15,58 +15,41 @@ return require("packer").startup({function(use)
     use "wbthomason/packer.nvim"
 
     use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "lua",
-                    "yaml",
-                    "json",
-                    "markdown",
-                    "latex",
-                    "ledger",
-                },
-                highlight = {
-                    enable = true,
-                    use_languages = true,
-                    additional_vim_regex_highlighting = true,
-                },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "<CR>",
-                        scope_incremental = "<CR>",
-                        node_incremental = "<TAB>",
-                        node_decremental = "<S-TAB>",
-                    },
-                },
-                indent = {
-                    enable = true
-                }
-            })
-            require"nvim-treesitter.install".compilers = { "clang", "gcc" }
-            require"nvim-treesitter.install".prefer_git = true
-        end
+        {
+            "nvim-treesitter/nvim-treesitter",
+            event = "CursorHold",
+            run = ":TSUpdate",
+            config = function()
+                require("plugins.treesitter")
+            end
+        },
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            after = "nvim-treesitter",
+            config = function()
+                require("plugins.treesitter-textobjects")
+            end
+        },
+        {
+            "nvim-treesitter/playground",
+            after = "nvim-treesitter",
+            config = function()
+                require("plugins.treesitter-playground")
+            end
+        },
+        {
+            "p00f/nvim-ts-rainbow",
+            after = "nvim-treesitter",
+            config = function()
+                require("plugins.treesitter-rainbow")
+            end
+        }
     }
 
-    use {
-        "p00f/nvim-ts-rainbow",
-        event = "BufRead",
-        requires = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                rainbow = {
-                    enable = true,
-                    extended_mode = true,
-                    max_file_lines = nil
-                }
-            })
-        end
-    }
 
     -- use {
     --     "neovim/nvim-lspconfig",
+    --     event = "BufRead",
     --     config = function()
     --         require("lspconfig").marksman.setup{}
     --     end
@@ -76,12 +59,25 @@ return require("packer").startup({function(use)
 
     -- use {
     --     "hrsh7th/nvim-cmp",
-    --     requires = {
-    --         "hrsh7th/cmp-nvim-lsp",
-    --         "hrsh7th/cmp-buffer",
-    --         "hrsh7th/cmp-path",
-    --         "hrsh7th/cmp-cmdline",
-    --     },
+    --     event = "InserEnter",
+        -- requires = {
+        -- {
+        --     "hrsh7th/cmp-nvim-lsp",
+        --     after = "nvim-cmp"
+        -- },
+        -- {
+        --     "hrsh7th/cmp-buffer",
+        --     after = "nvim-cmp"
+        -- },
+        -- {
+        --     "hrsh7th/cmp-path",
+        --     after = "nvim-cmp"
+        -- },
+        -- {
+        --     "hrsh7th/cmp-cmdline",
+        --     after = "nvim-cmp"
+        -- }
+        -- },
     --     config = function()
     --     end
     -- }
@@ -89,17 +85,7 @@ return require("packer").startup({function(use)
     use {
         "ibhagwan/fzf-lua",
         config = function()
-            require("fzf-lua").setup {
-                winopts = {
-                    border = "single",
-                    preview = {
-                        border = "noborder"
-                    }
-                }
-            }
-            vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
-            vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
-            vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { noremap = true, silent = true })
+            require("plugins.fzf-lua")
         end
     }
 
@@ -129,7 +115,7 @@ return require("packer").startup({function(use)
 
     use {
         "echasnovski/mini.pairs",
-        event = "BufRead",
+        event = "InsertCharPre",
         config = function()
             require("mini.pairs").setup()
         end
@@ -139,17 +125,7 @@ return require("packer").startup({function(use)
         "echasnovski/mini.surround",
         event = "BufRead",
         config = function()
-            require("mini.surround").setup({
-                mappings = {
-                    add = "<leader>sa",
-                    delete = "<leader>sd",
-                    find = "",
-                    find_left = "",
-                    highlight = "",
-                    replace = "<leader>sr",
-                    update_n_lines = "",
-                }
-            })
+            require("plugins.mini-surround")
         end
     }
 
@@ -157,16 +133,7 @@ return require("packer").startup({function(use)
         "kevinhwang91/nvim-bqf",
         ft = "qf",
         config = function()
-            require("bqf").setup({
-                auto_enable = true,
-                auto_resize_height = true,
-                preview = {
-                    win_height = 12,
-                    win_vheight = 12,
-                    delay_syntax = 80,
-                    border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-                }
-            })
+            require("plugins.bqf")
         end
     }
 
@@ -178,15 +145,10 @@ return require("packer").startup({function(use)
     }
 
     use {
-        "https://gitlab.com/madyanov/svart.nvim",
+        "madyanov/svart.nvim",
         event = "BufRead",
         config = function()
-            require("svart").configure({
-                ui_dim_content = false,
-            })
-            vim.api.nvim_set_keymap("n", "s", "<cmd>Svart<CR>", { noremap = true, silent = true })
-            vim.api.nvim_set_keymap("n", "S", "<cmd>SvartRegex<CR>", { noremap = true, silent = true })
-            vim.api.nvim_set_keymap("n", "gs", "<cmd>SvartRepeat<CR>", { noremap = true, silent = true })
+            require("plugins.svart")
         end
     }
 
@@ -194,26 +156,18 @@ return require("packer").startup({function(use)
         "catppuccin/nvim",
         as = "catppuccin",
         config = function()
-            require("catppuccin").setup({
-                flavour = "frappe",
-                transparent_background = true,
-                integrations = {
-                    aerial = true,
-                    gitsigns = true,
-                    cmp = true,
-                    treesitter = true,
-                    ts_rainbow = true,
-                }
-            })
-            vim.api.nvim_command "colorscheme catppuccin"
+            require("plugins.catppuccin")
         end
     }
 
 
     use {
-        "rebelot/heirline.nvim",
+        'nvim-lualine/lualine.nvim',
+        event = "BufEnter",
+        after = "catppuccin",
         config = function()
-            require("heirline").setup(statusline)
+            require("plugins.lualine")
+
         end
     }
 
@@ -227,7 +181,7 @@ return require("packer").startup({function(use)
 
     use {
         "NvChad/nvim-colorizer.lua",
-        event = "BufRead",
+        event = "CursorHold",
         config = function()
             require("colorizer").setup()
         end
@@ -237,10 +191,7 @@ return require("packer").startup({function(use)
         "beauwilliams/focus.nvim",
         event = "BufRead",
         config = function()
-            require("focus").setup({
-                hybridnumber = true,
-                cursorline = false,
-            })
+            require("plugins.focus")
         end
     }
 
@@ -249,16 +200,12 @@ return require("packer").startup({function(use)
         event = "BufRead",
         tag = "release",
         config = function()
-            require("gitsigns").setup({
-                signcolumn = false,
-                numhl = true,
-                current_line_blame = true,
-            })
+            require("plugins.gitsigns")
         end
     }
 
     if packer_bootstrap then
-        require('packer').sync()
+        require("packer").sync()
     end
 end,
 
