@@ -62,7 +62,6 @@ function getpath {
   PATH=$PATH:$1
 }
 . ~/.config/environment
-. ~/.config/environment_wayland
 
 # z
 eval "$(zoxide init zsh)"

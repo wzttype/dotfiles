@@ -43,6 +43,13 @@ return require("packer").startup({function(use)
             config = function()
                 require("plugins.treesitter-rainbow")
             end
+        },
+        {
+            "Wansmer/treesj",
+            after = "nvim-treesitter",
+            config = function()
+                require("treesj").setup()
+            end
         }
     }
 
@@ -54,8 +61,6 @@ return require("packer").startup({function(use)
     --         require("lspconfig").marksman.setup{}
     --     end
     -- }
-
-    -- use "williamboman/nvim-lsp-installer"
 
     -- use {
     --     "hrsh7th/nvim-cmp",
@@ -155,11 +160,11 @@ return require("packer").startup({function(use)
     use {
         "catppuccin/nvim",
         as = "catppuccin",
+        event = "BufEnter",
         config = function()
             require("plugins.catppuccin")
         end
     }
-
 
     use {
         'nvim-lualine/lualine.nvim',
@@ -167,7 +172,6 @@ return require("packer").startup({function(use)
         after = "catppuccin",
         config = function()
             require("plugins.lualine")
-
         end
     }
 
@@ -204,6 +208,11 @@ return require("packer").startup({function(use)
         end
     }
 
+    use {
+        "chrisgrieser/nvim-genghis",
+        event = "BufEnter",
+    }
+
     if packer_bootstrap then
         require("packer").sync()
     end
@@ -217,9 +226,8 @@ config = {
             })
         end,
         prompt_border = "single",
+        compact = true,
     },
-    profile = {
-        enable = true
-    }
+    autoremove = true,
 }
 })

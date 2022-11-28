@@ -12,6 +12,8 @@ getenv FZF_DEFAULT_OPTS "-m --height ~40% --layout=reverse --no-color"
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
 getenv http_proxy "127.0.0.1:1081"
 getenv https_proxy $http_proxy
+getenv MOZ_ENABLE_WAYLAND 1
+getenv BEMENU_OPTS "-in -l5 -H20 --fn 'SauceCodePro Nerd Font Mono 20'"
 
 getalias la "ls -A --group-directories-first"
 getalias kill "ps -ef | fzf | awk '{print $2}' | xargs kill -9"
@@ -19,5 +21,6 @@ getalias td "transmission-daemon"
 getalias tr "transmission-remote"
 getalias trl "transmission-remote -l"
 getalias tre "transmission-remote --exit"
+getalias touchpad "swaymsg input type:touchpad events toggle"
 
 getpath ~/Documents/Exec

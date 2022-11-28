@@ -1,4 +1,0 @@
-getenv MOZ_ENABLE_WAYLAND 1
-getenv BEMENU_OPTS "-in -l5 -H20 --fn 'SauceCodePro Nerd Font Mono 20'"
-
-getalias touchpad "swaymsg input type:touchpad events toggle"
