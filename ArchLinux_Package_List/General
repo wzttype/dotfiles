@@ -10,7 +10,6 @@ browserpass-chromium
 clang
 clash
 ctags
-diff-so-fancy
 dos2unix
 dra
 entr
@@ -22,7 +21,6 @@ git
 htmldoc
 iwd
 ledger
-librewolf
 libva-mesa-driver
 linux
 linux-firmware
@@ -30,7 +28,6 @@ mandoc
 md4c
 mesa
 mpv
-ncdu
 neovim
 opendoas
 openssh
@@ -39,7 +36,6 @@ pinentry-bemenu
 pipe-rename
 pipewire
 pipewire-pulse
-python
 qrencode
 ripgrep
 rsync

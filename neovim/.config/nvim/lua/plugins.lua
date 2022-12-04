@@ -15,82 +15,57 @@ return require("packer").startup({function(use)
     use "wbthomason/packer.nvim"
 
     use {
-        {
-            "nvim-treesitter/nvim-treesitter",
-            event = "CursorHold",
-            run = ":TSUpdate",
-            config = function()
-                require("plugins.treesitter")
-            end
-        },
-        {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-            after = "nvim-treesitter",
-            config = function()
-                require("plugins.treesitter-textobjects")
-            end
-        },
-        {
-            "nvim-treesitter/playground",
-            after = "nvim-treesitter",
-            config = function()
-                require("plugins.treesitter-playground")
-            end
-        },
-        {
-            "p00f/nvim-ts-rainbow",
-            after = "nvim-treesitter",
-            config = function()
-                require("plugins.treesitter-rainbow")
-            end
-        },
-        {
-            "Wansmer/treesj",
-            after = "nvim-treesitter",
-            config = function()
-                require("treesj").setup()
-            end
-        }
-    }
-
-
-    -- use {
-    --     "neovim/nvim-lspconfig",
-    --     event = "BufRead",
-    --     config = function()
-    --         require("lspconfig").marksman.setup{}
-    --     end
-    -- }
-
-    -- use {
-    --     "hrsh7th/nvim-cmp",
-    --     event = "InserEnter",
-        -- requires = {
-        -- {
-        --     "hrsh7th/cmp-nvim-lsp",
-        --     after = "nvim-cmp"
-        -- },
-        -- {
-        --     "hrsh7th/cmp-buffer",
-        --     after = "nvim-cmp"
-        -- },
-        -- {
-        --     "hrsh7th/cmp-path",
-        --     after = "nvim-cmp"
-        -- },
-        -- {
-        --     "hrsh7th/cmp-cmdline",
-        --     after = "nvim-cmp"
-        -- }
-        -- },
-    --     config = function()
-    --     end
-    -- }
-
-    use {
         "ibhagwan/fzf-lua",
         config = function()
             require("plugins.fzf-lua")
+        end
+    }
+
+    use {
+        "VonHeikemen/lsp-zero.nvim",
+        requires = {
+            -- LSP Support
+            {"neovim/nvim-lspconfig"},
+            {"williamboman/mason.nvim"},
+            {"williamboman/mason-lspconfig.nvim"},
+            -- Autocompletion
+            {"hrsh7th/nvim-cmp"},
+            {"hrsh7th/cmp-buffer"},
+            {"hrsh7th/cmp-path"},
+            {"saadparwaiz1/cmp_luasnip"},
+            {"hrsh7th/cmp-nvim-lsp"},
+            {"hrsh7th/cmp-nvim-lua"},
+            -- Snippets
+            {"L3MON4D3/LuaSnip"},
+            {"rafamadriz/friendly-snippets"},
+        },
+        config = function()
+            require("plugins.lsp-zero")
+        end
+    }
+
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        requires = {
+            {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                after = "nvim-treesitter",
+                config = function()
+                    require("plugins.treesitter-textobjects")
+                end
+            },
+            {
+                "nvim-treesitter/playground",
+                after = "nvim-treesitter",
+                config = function()
+                    require("plugins.treesitter-playground")
+                end
+            },
+        },
+        event = "CursorHold",
+        run = ":TSUpdate",
+        config = function()
+            require("plugins.treesitter")
         end
     }
 
@@ -135,14 +110,6 @@ return require("packer").startup({function(use)
     }
 
     use {
-        "kevinhwang91/nvim-bqf",
-        ft = "qf",
-        config = function()
-            require("plugins.bqf")
-        end
-    }
-
-    use {
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup()
@@ -150,10 +117,23 @@ return require("packer").startup({function(use)
     }
 
     use {
+        "chrisgrieser/nvim-genghis",
+        event = "BufEnter",
+    }
+
+    use {
         "madyanov/svart.nvim",
         event = "BufRead",
         config = function()
             require("plugins.svart")
+        end
+    }
+
+    use {
+        "kevinhwang91/nvim-bqf",
+        ft = "qf",
+        config = function()
+            require("plugins.bqf")
         end
     }
 
@@ -172,14 +152,6 @@ return require("packer").startup({function(use)
         after = "catppuccin",
         config = function()
             require("plugins.lualine")
-        end
-    }
-
-    use {
-        "stevearc/aerial.nvim",
-        cmd = "AerialToggle",
-        config = function()
-            require("aerial").setup()
         end
     }
 
@@ -206,11 +178,6 @@ return require("packer").startup({function(use)
         config = function()
             require("plugins.gitsigns")
         end
-    }
-
-    use {
-        "chrisgrieser/nvim-genghis",
-        event = "BufEnter",
     }
 
     if packer_bootstrap then

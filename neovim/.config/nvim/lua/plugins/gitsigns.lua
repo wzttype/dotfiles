@@ -3,3 +3,4 @@ require("gitsigns").setup({
     numhl = true,
     current_line_blame = true,
 })
+vim.api.nvim_set_keymap("n", "<leader>p", ":Gitsigns preview_hunk<CR>", { noremap = true, silent = true })
