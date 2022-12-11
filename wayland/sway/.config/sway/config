@@ -64,17 +64,22 @@ set $down j
 set $up k
 set $right l
 set $term foot
+set $browser vivaldi-stable
+set $launcher bemenu-run
 
 # Basics
-
-# Start terminal emulator
-bindsym $mod+Return exec $term
 
 # Kill focused window
 bindsym $mod+BackSpace kill
 
+# Start Web Browser
+bindsym $mod+d exec $browser
+
+# Start terminal emulator
+bindsym $mod+Return exec $term
+
 # Start launcher
-bindsym $mod+d exec bemenu-run
+bindsym $mod+r exec $launcher
 
 # Volume
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -248,4 +253,3 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"

@@ -1,0 +1,3 @@
+getenv MOZ_ENABLE_WAYLAND 1
+
+getalias touchpad "swaymsg input type:touchpad events toggle"

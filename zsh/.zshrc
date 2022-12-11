@@ -14,7 +14,7 @@ export PS1="%n@%m %~ "
 # Settings
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=$HOME/.local/share/zsh/zhistory
+HISTFILE=$XDG_DATA_HOME/.zsh_history
 setopt globdots
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
@@ -61,7 +61,8 @@ function getpath {
   shift
   PATH=$PATH:$1
 }
-. ~/.config/environment
+source ~/.config/environment
+[[ $XDG_SESSION_TYPE == "wayland" ]] && source ~/.config/environment_wayland
 
 # z
 eval "$(zoxide init zsh)"

@@ -1,3 +1,8 @@
+getenv XDG_BIN_HOME ~/.local/bin
+getenv XDG_CONFIG_HOME ~/.config
+getenv XDG_CACHE_HOME ~/.cache
+getenv XDG_DATA_HOME ~/.local/share
+getenv XDG_STATE_HOME ~/.local/state
 getenv EDITOR nvim
 getenv LANG en_US.UTF-8
 getenv LC_CTYPE en_US.UTF-8
@@ -5,21 +10,20 @@ getenv VISUAL nvim
 getenv TERM xterm-256color
 getenv MANPAGER less
 getenv MANPATH /usr/share/man
-getenv LESSHISTFILE /dev/null
 getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
 getenv FZF_DEFAULT_COMMAND "fd --hidden --follow --exclude .git"
 getenv FZF_DEFAULT_OPTS "-m --height ~60% --layout=reverse --no-color --preview 'head -500 {}'"
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
 getenv http_proxy "127.0.0.1:1081"
 getenv https_proxy $http_proxy
-getenv BEMENU_OPTS "-in -l5 -H20 --fn 'SauceCodePro Nerd Font Mono 20'"
-getenv MOZ_ENABLE_WAYLAND 1
+getenv BEMENU_OPTS "-i -l5 -H20 --fn 'SauceCodePro Nerd Font Mono 20'"
 
 getalias la "ls -A --group-directories-first"
 getalias td "transmission-daemon"
 getalias tr "transmission-remote"
 getalias trl "transmission-remote -l"
 getalias tre "transmission-remote --exit"
-getalias touchpad "swaymsg input type:touchpad events toggle"
+getalias gs "git status"
+getalias gd "git diff"
 
 getpath ~/Documents/Exec

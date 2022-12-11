@@ -1,6 +1,9 @@
 require("lsp-zero").preset("recommended")
 require("lsp-zero").ensure_installed({
     "sumneko_lua",
-    "marksman",
+    "html",
+    "cssls",
+    "tsserver",
+    "pyright",
 })
 require("lsp-zero").setup()

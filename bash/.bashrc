@@ -32,7 +32,7 @@ export HISTCONTROL=ignoredups
 shopt -s histappend
 export HISTSIZE=-1
 export HISTFILESIZE=-1
-export HISTFILE=$HOME/.local/share/.bash_history
+export HISTFILE=$XDG_DATA_HOME/.bash_history
 
 # Prompt
 PS1='\u@\h \W> '
@@ -55,7 +55,8 @@ function getpath {
   shift
   PATH=$PATH:$1
 }
-. ~/.config/environment
+source ~/.config/environment
+[[ $XDG_SESSION_TYPE == "wayland" ]] && source ~/.config/environment_wayland
 
 # z
 eval "$(zoxide init bash)"
