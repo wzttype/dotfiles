@@ -1,5 +1,4 @@
 *.log
 /vim/.vim/plugged/
-/neovim/.local/share/nvim/
-/neovim/.config/nvim/plugin/
+/neovim/.config/nvim/lazy-lock.json
 /newsboat/.config/newsboat/urls

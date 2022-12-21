@@ -12,7 +12,7 @@ getenv MANPAGER less
 getenv MANPATH /usr/share/man
 getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
 getenv FZF_DEFAULT_COMMAND "fd --hidden --follow --exclude .git"
-getenv FZF_DEFAULT_OPTS "-m --height ~60% --layout=reverse --no-color --preview 'head -500 {}'"
+getenv FZF_DEFAULT_OPTS "--ansi --multi --height ~60% --layout=reverse --preview 'head -500 {}'"
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
 getenv http_proxy "127.0.0.1:1081"
 getenv https_proxy $http_proxy
@@ -25,5 +25,7 @@ getalias trl "transmission-remote -l"
 getalias tre "transmission-remote --exit"
 getalias gs "git status"
 getalias gd "git diff"
+getalias volume "wpctl get-volume @DEFAULT_AUDIO_SINK@"
+getalias battery "cat /sys/class/power_supply/BAT1/capacity"
 
-getpath ~/Documents/Exec
+getpath ~/.local/bin

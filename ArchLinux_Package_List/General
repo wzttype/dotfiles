@@ -18,6 +18,7 @@ fish
 foot
 fzf
 git
+global
 htmldoc
 iwd
 ledger
@@ -29,6 +30,7 @@ md4c
 mesa
 mpv
 neovim
+npm
 opendoas
 openssh
 pass

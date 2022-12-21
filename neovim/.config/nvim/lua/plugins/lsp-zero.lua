@@ -1,8 +1,7 @@
 require("lsp-zero").preset("recommended")
 require("lsp-zero").ensure_installed({
     "sumneko_lua",
-    "html",
-    "cssls",
+    "emmet_ls",
     "tsserver",
     "pyright",
 })

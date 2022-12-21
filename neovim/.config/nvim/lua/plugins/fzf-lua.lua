@@ -6,4 +6,6 @@ require("fzf-lua").setup({
         }
     }
 })
-vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>FzfLua<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { noremap = true, silent = true })

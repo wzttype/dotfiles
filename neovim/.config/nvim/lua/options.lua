@@ -18,14 +18,12 @@ vim.opt.linebreak = true
 vim.opt.modelines = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.scrolloff = 3
 vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.shortmess:append("csI")
 vim.opt.showbreak = "> "
 vim.opt.showmatch = true
 vim.opt.showmode = false
-vim.opt.sidescrolloff = 5
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.splitbelow = true
@@ -57,8 +55,6 @@ local disabled_built_ins = {
     "logipat",
     "rrhelper",
     "spellfile_plugin",
-    "matchit",
-    "matchparen",
     "man"
 }
 
