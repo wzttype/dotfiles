@@ -6,6 +6,9 @@ require("nvim-treesitter.configs").setup({
         "markdown",
         "latex",
         "ledger",
+        "html",
+        "css",
+        "javascript",
     },
     highlight = {
         enable = true,

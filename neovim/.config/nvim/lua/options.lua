@@ -24,6 +24,7 @@ vim.opt.shortmess:append("csI")
 vim.opt.showbreak = "> "
 vim.opt.showmatch = true
 vim.opt.showmode = false
+vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.splitbelow = true
@@ -34,7 +35,6 @@ vim.opt.tabstop = 4
 vim.opt.tagcase = "followscs"
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 400
-vim.opt.updatetime = 250
 vim.opt.writebackup = false
 
 local disabled_built_ins = {

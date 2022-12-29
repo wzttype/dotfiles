@@ -1,6 +1,3 @@
-# Software
-exec mako
-
 # Touchpad
 input type:touchpad {
     dwt enabled
@@ -20,6 +17,51 @@ output eDP-1 mode 1920x1080@60Hz
 # Wallpaper
 output eDP-1 bg $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill
 
+# Border and Gaps
+font pango:SauceCodePro Nerd Font Mono Regular 15
+default_border pixel 3
+smart_borders on
+gaps inner 8
+gaps outer 8
+
+# Colors
+set $rosewater #f2d5cf
+set $flamingo  #eebebe
+set $pink      #f4b8e4
+set $mauve     #ca9ee6
+set $red       #e78284
+set $maroon    #ea999c
+set $peach     #ef9f76
+set $green     #a6d189
+set $teal      #81c8be
+set $sky       #99d1db
+set $sapphire  #85c1dc
+set $blue      #8caaee
+set $lavender  #babbf1
+set $text      #c6d0f5
+set $subtext1  #b5bfe2
+set $subtext0  #a5adce
+set $overlay2  #949cbb
+set $overlay1  #838ba7
+set $overlay0  #737994
+set $surface2  #626880
+set $surface1  #51576d
+set $surface0  #414559
+set $base      #303446
+set $mantle    #292c3c
+set $crust     #232634
+
+# target                 title     bg    text   indicator  border
+client.focused           $pink     $base $text  $rosewater $pink
+client.focused_inactive  $mauve    $base $text  $rosewater $mauve
+client.unfocused         $mauve    $base $text  $rosewater $mauve
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
+# Auto Start
+exec mako
+
 # Xwayland
 xwayland disable
 
@@ -29,24 +71,25 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f'
 
-# Border and Gaps
-font pango:SauceCodePro Nerd Font Mono Regular 15
-default_border pixel 3
-smart_borders on
-gaps inner 8
-gaps outer 8
-
-# Colors
-set $cl_high #8CAAEE
-set $cl_indi #9399b2
-set $cl_back #303446
-set $cl_fore #C6D0F5
-set $cl_urge #f38ba8
-# class                 border   background text     indicator childborder
-client.focused          $cl_high $cl_high   $cl_fore $cl_indi  $cl_high
-client.focused_inactive $cl_back $cl_back   $cl_fore $cl_back  $cl_back
-client.unfocused        $cl_back $cl_back   $cl_fore $cl_back  $cl_back
-client.urgent           $cl_urge $cl_urge   $cl_fore $cl_urge  $cl_urge
+# Floating window
+for_window {
+    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+    [app_id="firefox"] inhibit_idle fullscreen
+    [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
+    [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
+    [app_id="firefox" title="^Library$"] floating enable
+    [app_id="LibreWolf"] inhibit_idle fullscreen
+    [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
+    [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
+    [app_id="LibreWolf" title="^Library$"] floating enable
+    [title=".*Vivaldi$"] inhibit_idle fullscreen
+    [app_id="mpv"] inhibit_idle
+    [app_id="pqiv"] floating enable
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+}
 
 #
 # Key bindings
@@ -174,26 +217,6 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-
-# Floating window
-for_window {
-    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
-    [app_id="firefox"] inhibit_idle fullscreen
-    [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
-    [app_id="firefox" title="^Library$"] floating enable
-    [app_id="LibreWolf"] inhibit_idle fullscreen
-    [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
-    [app_id="LibreWolf" title="^Library$"] floating enable
-    [title=".*Vivaldi$"] inhibit_idle fullscreen
-    [app_id="mpv"] inhibit_idle
-    [app_id="pqiv"] floating enable
-    [window_role="pop-up"] floating enable
-    [window_role="bubble"] floating enable
-    [window_role="dialog"] floating enable
-    [window_type="dialog"] floating enable
-}
 
 # Assign window
 assign {
