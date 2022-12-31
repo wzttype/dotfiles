@@ -15,4 +15,7 @@ require("lsp-zero").configure("sumneko_lua",{
         }
     }
 })
+require("lsp-zero").set_preferences({
+    sign_icons = { }
+})
 require("lsp-zero").setup()

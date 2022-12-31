@@ -2,7 +2,7 @@ configuration {
     modi: "drun,run";
     width: 550;
     lines: 5;
-    font: "SauceCodePro Nerd Font Mono Regular 15";
+    font: "Source Code Pro 15";
     show-match: false;
     separator-style: "solid";
     hide-scrollbar: true;

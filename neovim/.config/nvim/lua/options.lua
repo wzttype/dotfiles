@@ -24,7 +24,6 @@ vim.opt.shortmess:append("csI")
 vim.opt.showbreak = "> "
 vim.opt.showmatch = true
 vim.opt.showmode = false
-vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.splitbelow = true
@@ -36,28 +35,3 @@ vim.opt.tagcase = "followscs"
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 400
 vim.opt.writebackup = false
-
-local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "man"
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
-end

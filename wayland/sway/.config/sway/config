@@ -18,7 +18,7 @@ output eDP-1 mode 1920x1080@60Hz
 output eDP-1 bg $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill
 
 # Border and Gaps
-font pango:SauceCodePro Nerd Font Mono Regular 15
+font pango:Source Code Pro 15
 default_border pixel 3
 smart_borders on
 gaps inner 8

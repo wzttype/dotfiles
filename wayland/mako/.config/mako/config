@@ -2,7 +2,7 @@
 max-history=10
 sort=-priority
 # style options
-font=SauceCodePro Nerd Font Mono Regular 15
+font=Source Code Pro 15
 background-color=#eff1f5
 text-color=#4c4f69
 width=600

@@ -14,11 +14,11 @@ getenv RIPGREP_CONFIG_PATH ~/.config/ripgreprc
 getenv FZF_DEFAULT_COMMAND "fd --hidden --follow --exclude .git"
 getenv FZF_DEFAULT_OPTS "--ansi --multi --height ~60% --layout=reverse --preview 'head -500 {}'"
 getenv PASSWORD_STORE_DIR ~/Documents/password-store
-getenv https_proxy "socks5h://127.0.0.1:1080"
+getenv https_proxy "127.0.0.1:1081"
 getenv HTTPS_PROXY $https_proxy
 getenv http_proxy $https_proxy
 getenv HTTP_PROXY $https_proxy
-getenv BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'SauceCodePro Nerd Font Mono 20'"
+getenv BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'Source Code Pro 20'"
 
 getalias la "ls -A --group-directories-first"
 getalias td "transmission-daemon"
