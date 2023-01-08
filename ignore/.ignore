@@ -6,6 +6,8 @@ Documents/password-store
 .config/chromium
 .local/share/fish/generated_completions
 .local/share/nvim
+.local/lib
+.local/state
 .vim/plugged
 .git
 .npm

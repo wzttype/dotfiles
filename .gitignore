@@ -1,3 +1,2 @@
 *.log
 /vim/.vim/plugged/
-/newsboat/.config/newsboat/urls

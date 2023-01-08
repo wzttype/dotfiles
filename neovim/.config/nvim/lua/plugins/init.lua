@@ -8,29 +8,21 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-vim.opt.runtimepath:prepend(lazypath)
-
+vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(
     {
         {
             "catppuccin/nvim",
             name = "catppuccin",
-            event = "BufEnter",
-            config = function ()
+            config = function()
                 require("plugins.catppuccin")
             end
         },
         {
             'nvim-lualine/lualine.nvim',
             event = "VeryLazy",
-            config = function ()
+            config = function()
                 require("plugins.lualine")
-            end
-        },
-        {
-            "ibhagwan/fzf-lua",
-            config = function ()
-                require("plugins.fzf-lua")
             end
         },
         {
@@ -46,7 +38,7 @@ require("lazy").setup(
                 "hrsh7th/cmp-buffer",
                 {
                     "hrsh7th/cmp-cmdline",
-                    config = function ()
+                    config = function()
                         require("plugins/cmp-cmdline")
                     end
                 },
@@ -58,7 +50,7 @@ require("lazy").setup(
                 "L3MON4D3/LuaSnip",
                 "rafamadriz/friendly-snippets",
             },
-            config = function ()
+            config = function()
                 require("plugins.lsp-zero")
             end
         },
@@ -69,66 +61,78 @@ require("lazy").setup(
             dependencies = {
                 {
                     "JoosepAlviste/nvim-ts-context-commentstring",
-                    config = function ()
+                    config = function()
                         require("plugins.ts-context-commentstring")
                     end
                 },
                 {
                     "cshuaimin/ssr.nvim",
-                    init = function ()
-                        vim.keymap.set(
-                            { "n", "x" },
-                            "<leader>ssr",
-                            function ()
-                                require("ssr").open()
-                            end
-                        )
+                    config = function()
+                        require("plugins.ssr")
                     end
-                }
+                },
+                {
+                    "andymass/vim-matchup",
+                    config = function()
+                        require("plugins.vim-matchup")
+                    end
+                },
+                {
+                    "Wansmer/treesj",
+                    config = function()
+                        require("plugins.treesj")
+                    end
+                },
             },
-            config = function ()
+            config = function()
                 require("plugins.treesitter")
             end
         },
         {
-            "chrisgrieser/nvim-various-textobjs",
-            event = "BufReadPost",
-            config = function ()
-                require("plugins.various-textobjects")
+            "ibhagwan/fzf-lua",
+            config = function()
+                require("plugins.fzf-lua")
+            end
+        },
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            event = "BufReadPre",
+            config = function()
+                require("plugins.indent-blankline")
+            end
+        },
+        {
+            "echasnovski/mini.ai",
+            event = "VeryLazy",
+            config = function()
+                require("plugins/mini-ai")
             end
         },
         {
             "echasnovski/mini.align",
             event = "VeryLazy",
-            config = function ()
+            config = function()
                 require("mini.align").setup()
             end
         },
         {
             "echasnovski/mini.comment",
             event = "VeryLazy",
-            config = function ()
+            config = function()
                 require("plugins.mini-comment")
-            end
-        },
-        {
-            "echasnovski/mini.indentscope",
-            event = "BufReadPre",
-            config = function ()
-                require("mini.indentscope").setup()
             end
         },
         {
             "echasnovski/mini.pairs",
             event = "InsertEnter",
-            config = function ()
+            config = function()
                 require("mini.pairs").setup()
             end
         },
         {
             "echasnovski/mini.surround",
             event = "VeryLazy",
-            config = function ()
+            config = function()
                 require("plugins.mini-surround")
             end
         },
@@ -140,36 +144,35 @@ require("lazy").setup(
             "madyanov/svart.nvim",
             url = "https://gitlab.com/madyanov/svart.nvim",
             event = "VeryLazy",
-            config = function ()
+            config = function()
                 require("plugins.svart")
-            end
-        },
-        {
-            "folke/trouble.nvim",
-            cmd = { "Trouble", "TroubleToggle" },
-            config = function ()
-                require("plugins.trouble")
             end
         },
         {
             "NvChad/nvim-colorizer.lua",
             event = "BufReadPre",
-            config = function ()
+            config = function()
                 require("colorizer").setup()
             end
         },
         {
             "beauwilliams/focus.nvim",
             event = "BufReadPost",
-            config = function ()
+            config = function()
                 require("plugins.focus")
             end
         },
         {
             "lewis6991/gitsigns.nvim",
             event = "BufReadPre",
-            config = function ()
+            config = function()
                 require("plugins.gitsigns")
+            end
+        },
+        {
+            "stevearc/oil.nvim",
+            config = function()
+                require("plugins.oil")
             end
         },
     },
@@ -184,25 +187,16 @@ require("lazy").setup(
         performance = {
             rtp = {
                 disabled_plugins = {
-                    "tutor",
-                    "netrw",
-                    "netrwPlugin",
-                    "netrwSettings",
-                    "netrwFileHandlers",
                     "gzip",
-                    "zip",
-                    "zipPlugin",
-                    "tar",
+                    "man",
+                    "netrwPlugin",
+                    "matchit",
+                    "matchparen",
+                    "spellfile",
                     "tarPlugin",
-                    "getscript",
-                    "getscriptPlugin",
-                    "vimball",
-                    "vimballPlugin",
                     "tohtml",
-                    "logipat",
-                    "rrhelper",
-                    "spellfile_plugin",
-                    "man"
+                    "tutor",
+                    "zipPlugin",
                 }
             }
         }

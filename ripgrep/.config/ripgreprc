@@ -1,5 +1,0 @@
---hidden
---follow
---smart-case
---glob=!.cache/*
---glob=!.git/*

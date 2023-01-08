@@ -1,6 +1,9 @@
 # General Options
 --ignore-errors
 
+# Network Options
+--proxy https://127.0.0.1:1081/
+
 # Download Options
 --downloader aria2c
 

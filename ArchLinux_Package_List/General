@@ -36,7 +36,6 @@ opendoas
 openssh
 pass
 pinentry-bemenu
-pipe-rename
 pipewire
 pipewire-pulse
 qrencode

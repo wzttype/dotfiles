@@ -4,9 +4,7 @@ require("nvim-treesitter.configs").setup({
         "lua",
         "yaml",
         "json",
-        "markdown",
         "latex",
-        "ledger",
         "html",
         "css",
         "javascript",
@@ -33,5 +31,5 @@ require("nvim-treesitter.configs").setup({
         enable = true
     },
 })
-require"nvim-treesitter.install".compilers = { "clang", "gcc" }
-require"nvim-treesitter.install".prefer_git = true
+require("nvim-treesitter.install").compilers = { "clang", "gcc" }
+require("nvim-treesitter.install").prefer_git = true
