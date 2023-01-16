@@ -1,2 +1,3 @@
 *.log
-/vim/.vim/plugged/
+vim/.vim/plugged/
+wayland/sway/.config/sway/config.local

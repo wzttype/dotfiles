@@ -1,7 +1,7 @@
 require("gitsigns").setup({
-    signcolumn = false,
-    numhl = true,
-    current_line_blame = true,
+  signcolumn = false,
+  numhl = true,
+  current_line_blame = true,
 })
 vim.keymap.set("n", "<leader>gv", ":Gitsigns preview_hunk<CR>")
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>")

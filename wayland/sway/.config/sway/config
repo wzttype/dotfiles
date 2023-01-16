@@ -144,10 +144,6 @@ bindsym $mod+Ctrl+l exec swaylock -f
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t custom -m 'Do you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
-bindsym $mod+z seat - cursor set 1250 700
-bindsym $mod+x seat - cursor set 820 870
-bindsym $mod+c seat - cursor set 820 750
-
 # Drag floating windows
 floating_modifier $mod normal
 
@@ -246,9 +242,6 @@ bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent container
-bindsym $mod+a focus parent
-
 # Scratchpad
 
 # Move the currently focused window to the scratchpad
@@ -276,3 +269,5 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+include ~/.config/sway/config.local

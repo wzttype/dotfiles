@@ -19,7 +19,7 @@ vim.opt.modelines = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 2
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
 vim.opt.shortmess:append("csI")
 vim.opt.showbreak = "> "
@@ -32,7 +32,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.switchbuf = "useopen"
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 vim.opt.tagcase = "followscs"
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 400
