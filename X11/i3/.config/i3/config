@@ -1,18 +1,9 @@
-# touchpad
-input type:touchpad {
-    dwt enabled
-    events disabled
-    natural_scroll enabled
-    scroll_method edge
-    tap enabled
-    tap_button_map lrm
-}
-
 # cursor
-seat type:keyboard hide_cursor when-typing enable
+exec --no-startup-id xsetroot -cursor_name left_ptr
+exec --no-startup-id unclutter --ignore-scrolling
 
 # wallpaper
-output eDP-1 bg $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill
+exec --no-startup-id xwallpaper --zoom $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1)
 
 # font
 font pango:Source Code Pro 15
@@ -59,21 +50,13 @@ client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 # notification
-exec mako
-
-# xwayland
-xwayland disable
+exec --no-startup-id dunst
 
 # idle
-exec swayidle -w \
-         timeout 300 'swaylock' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock'
+exec --no-startup-id xss-lock --transfer-sleep-lock -- slock
 
-# xkb settings
-input type:keyboard {
-    xkb_options "ctrl:swapcaps"
-}
+# compositor
+exec --no-startup-id picom
 
 # variables
 set $mod Mod4
@@ -81,7 +64,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term foot
+set $term alacritty
 set $launcher bemenu-run
 
 # kill focused window
@@ -91,7 +74,7 @@ bindsym $mod+BackSpace kill
 bindsym $mod+Return exec $term
 
 # start launcher
-bindsym $mod+r exec $launcher
+bindsym $mod+r exec bemenu-run
 
 # volume
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -104,14 +87,14 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
-bindsym $mod+Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
+bindsym Print exec scrot -sf '%F_%T_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
+bindsym $mod+Print exec scrot '%F_%T_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
 
 # lock screen
-bindsym $mod+Ctrl+l exec swaylock
+bindsym $mod+Ctrl+l exec slock
 
-# exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t custom -m 'Do you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # define names of workspaces
 set $ws1 "1"
@@ -149,42 +132,16 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# assign window
-assign {
-    [title=".*Vivaldi$"] workspace number $ws4
-    [app_id="LibreWolf"] workspace number $ws5
-}
-
-# floating window
-for_window {
-    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
-    [app_id="firefox"] inhibit_idle fullscreen
-    [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
-    [app_id="firefox" title="^Library$"] floating enable
-    [app_id="LibreWolf"] inhibit_idle fullscreen
-    [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
-    [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
-    [app_id="LibreWolf" title="^Library$"] floating enable
-    [title=".*Vivaldi$"] inhibit_idle fullscreen
-    [app_id="mpv"] inhibit_idle
-    [app_id="pqiv"] floating enable
-    [window_role="pop-up"] floating enable
-    [window_role="bubble"] floating enable
-    [window_role="dialog"] floating enable
-    [window_type="dialog"] floating enable
-}
-
 # drag floating windows
-floating_modifier $mod normal
+floating_modifier $mod
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-# restart sway inplace
+# restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# move your focus around
+# change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
@@ -220,7 +177,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # make the current focus fullscreen
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
@@ -236,19 +193,19 @@ bindsym $mod+minus scratchpad show
 
 # resize containers
 mode "resize" {
-    bindsym $left  resize shrink width  10px
-    bindsym $down  resize grow   height 10px
-    bindsym $up    resize shrink height 10px
-    bindsym $right resize grow   width  10px
+    bindsym $left  resize shrink width  10 px or 10 ppt
+    bindsym $down  resize grow   height 10 px or 10 ppt
+    bindsym $up    resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow   width  10 px or 10 ppt
 
     # or use arrow keys
-    bindsym Left  resize shrink width  10px
-    bindsym Down  resize grow   height 10px
-    bindsym Up    resize shrink height 10px
-    bindsym Right resize grow   width  10px
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
 
     # return to default mode
     bindsym Escape mode "default"
 }
 
-include ~/.config/sway/config.local
+include ~/.config/i3/config.local

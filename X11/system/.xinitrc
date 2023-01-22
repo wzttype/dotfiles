@@ -29,11 +29,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xsetroot -cursor_name left_ptr &
-habak -ms -hi ~/Pictures/Wallpapers/ &
-xss-lock -l -- slock &
-pgrep -x sxhkd > /dev/null || sxhkd &
-picom -b &
-dunst &
-unclutter --ignore-scrolling &
-exec bspwm
+exec i3

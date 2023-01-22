@@ -18,10 +18,10 @@ require("lazy").setup({
     end,
   },
   {
-    "nvim-lualine/lualine.nvim",
+    "bluz71/nvim-linefly",
     event = "VeryLazy",
     config = function()
-      require("plugins.lualine")
+      require("plugins.linefly")
     end,
   },
   {
@@ -89,6 +89,7 @@ require("lazy").setup({
   },
   {
     "ibhagwan/fzf-lua",
+    event = "VeryLazy",
     config = function()
       require("plugins.fzf-lua")
     end,
@@ -179,7 +180,6 @@ require("lazy").setup({
     rtp = {
       disabled_plugins = {
         "gzip",
-        "man",
         "netrwPlugin",
         "matchit",
         "matchparen",

@@ -1,5 +1,9 @@
 require("catppuccin").setup({
   flavour = "frappe",
+  background = {
+    light = "latte",
+    dark = "frappe",
+  },
   integrations = {
     gitsigns = true,
     mason = true,

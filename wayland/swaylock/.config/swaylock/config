@@ -1,18 +1,17 @@
+# Options
 ignore-empty-password
+daemonize
+# Appearance
 disable-caps-lock-text
 indicator-caps-lock
 color=303446
-
-# Text color
-font-size=50
 font=Source Code Pro
+font-size=50
 text-color=FBB829
 text-clear-color=FBB829
 text-caps-lock-color=FBB829
 text-ver-color=FBB829
 text-wrong-color=FBB829
-
-# Ring
 indicator-radius=230
 indicator-thickness=5
 line-uses-ring

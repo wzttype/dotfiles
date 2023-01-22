@@ -1,3 +1,4 @@
 *.log
 vim/.vim/plugged/
 wayland/sway/.config/sway/config.local
+X11/i3/.config/i3/config.local
