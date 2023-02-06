@@ -17,6 +17,12 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move up" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move up" })
 
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<A-Up>", ":resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<A-Down>", ":resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<A-Left>", ":vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<A-Right>", ":vertical resize +2<cr>", { desc = "Increase window width" })
+
 -- quick switch buffer
-vim.keymap.set("n", "<A-h>", vim.cmd.bprevious)
-vim.keymap.set("n", "<A-l>", vim.cmd.bnext)
+vim.keymap.set("n", "<A-h>", vim.cmd.bprevious, { desc = "Prev buffer" })
+vim.keymap.set("n", "<A-l>", vim.cmd.bnext, { desc = "Next buffer" })

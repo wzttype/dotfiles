@@ -1,30 +1,30 @@
-getenv XDG_CONFIG_HOME ~/.config
-getenv XDG_CACHE_HOME ~/.cache
-getenv XDG_DATA_HOME ~/.local/share
-getenv XDG_STATE_HOME ~/.local/state
-getenv EDITOR nvim
-getenv VISUAL nvim
-getenv LANG en_US.UTF-8
-getenv LC_CTYPE en_US.UTF-8
-getenv TERM xterm-256color
-getenv MANPAGER "nvim +Man!"
-getenv MANPATH /usr/share/man
-getenv FZF_DEFAULT_COMMAND "rg --files --hidden --follow --smart-case"
-getenv FZF_DEFAULT_OPTS "--ansi --multi --height ~60% --layout=reverse"
-getenv PASSWORD_STORE_DIR ~/Documents/password-store
-getenv BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'Source Code Pro 20'"
-getenv FFF_HIDDEN 1
+getvar XDG_CONFIG_HOME ~/.config
+getvar XDG_CACHE_HOME ~/.cache
+getvar XDG_DATA_HOME ~/.local/share
+getvar XDG_STATE_HOME ~/.local/state
+getvar EDITOR nvim
+getvar VISUAL nvim
+getvar BROWSER librewolf
+getvar LANG en_US.UTF-8
+getvar LC_CTYPE en_US.UTF-8
+getvar TERM xterm-256color
+getvar MANPAGER "nvim +Man!"
+getvar MANPATH /usr/share/man
+getvar FZF_DEFAULT_COMMAND "rg --files --hidden --follow --smart-case"
+getvar FZF_DEFAULT_OPTS "--multi --height ~60% --layout=reverse --no-scrollbar --info=inline"
+getvar PASSWORD_STORE_DIR ~/Documents/password-store
+getvar BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'Source Code Pro 20'"
 
 getalias la "ls -A --group-directories-first"
+getalias ll "ls -AgGh --group-directories-first"
 getalias volume "wpctl get-volume @DEFAULT_AUDIO_SINK@"
 getalias battery "cat /sys/class/power_supply/BAT1/capacity"
 getalias ss "systemctl status"
-getalias td "transmission-daemon"
-getalias tr "transmission-remote"
+getalias td transmission-daemon
+getalias tr transmission-remote
 getalias trl "transmission-remote -l"
 getalias tre "transmission-remote --exit"
 getalias gs "git status"
 getalias gd "git diff"
-getalias open "fzf | xargs -r xdg-open"
 
 getpath ~/.local/bin

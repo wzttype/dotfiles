@@ -19,14 +19,13 @@ require("lazy").setup({
   },
   {
     "bluz71/nvim-linefly",
-    event = "VeryLazy",
     config = function()
       require("plugins.linefly")
     end,
   },
   {
     "VonHeikemen/lsp-zero.nvim",
-    event = "InsertEnter",
+    ft = { "lua", "html", "css", "js", "py" },
     dependencies = {
       -- lsp support
       "williamboman/mason.nvim",
@@ -57,10 +56,8 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPost",
     build = ":TSUpdate",
-    config = function()
-      require("plugins.treesitter")
-    end,
     dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
@@ -86,6 +83,9 @@ require("lazy").setup({
         end,
       },
     },
+    config = function()
+      require("plugins.treesitter")
+    end,
   },
   {
     "ibhagwan/fzf-lua",
@@ -102,15 +102,25 @@ require("lazy").setup({
     end,
   },
   {
+    "echasnovski/mini.ai",
+    keys = {
+      { "a", mode = { "x", "o" } },
+      { "i", mode = { "x", "o" } },
+    },
+    config = function()
+      require("plugins.mini-ai")
+    end,
+  },
+  {
     "echasnovski/mini.align",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = function()
       require("mini.align").setup()
     end,
   },
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = function()
       require("plugins.mini-comment")
     end,
@@ -124,19 +134,18 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.surround",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = function()
       require("plugins.mini-surround")
     end,
   },
   {
     "chrisgrieser/nvim-genghis",
-    event = "BufRead",
+    event = "BufReadPost",
   },
   {
-    "madyanov/svart.nvim",
     url = "https://gitlab.com/madyanov/svart.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = function()
       require("plugins.svart")
     end,
@@ -144,15 +153,13 @@ require("lazy").setup({
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
-    config = function()
-      require("colorizer").setup()
-    end,
+    config = true,
   },
   {
-    "beauwilliams/focus.nvim",
+    "gabrielpoca/replacer.nvim",
     event = "BufReadPost",
     config = function()
-      require("plugins.focus")
+      require("plugins.replacer")
     end,
   },
   {

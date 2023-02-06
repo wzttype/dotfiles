@@ -43,8 +43,8 @@ bindkey -M menuselect 'down' vi-down-line-or-history
 bindkey -M menuselect 'up' vi-up-line-or-history
 bindkey -M menuselect 'right' vi-forward-char
 
-# Environment
-function getenv {
+# Variable
+function getvar {
   var="$1"
   shift
   export "$var=$(printf "%s\n" "$@" | paste -s -d: -)"
@@ -62,7 +62,11 @@ function getpath {
   PATH=$PATH:$1
 }
 source ~/.config/environment
-[[ $XDG_SESSION_TYPE == "wayland" ]] && source ~/.config/environment_wayland
+if [[ $XDG_SESSION_TYPE ==  "wayland" ]]; then
+  source ~/.config/environment_wayland
+else
+  source ~/.config/environment_X11
+fi
 
 # z
 eval "$(zoxide init zsh)"

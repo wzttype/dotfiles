@@ -16,6 +16,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
 -- Start new line without comment
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
@@ -24,13 +31,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- Remove whitespace on save
+-- Remove eol whitespace on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   command = ":%s/\\s\\+$//e",
 })
 
--- close some filetypes with <q>
+-- Close some filetypes with <q>
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
     "qf",

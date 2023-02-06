@@ -37,8 +37,8 @@ export HISTFILE=$XDG_DATA_HOME/.bash_history
 # Prompt
 PS1='\u@\h \W> '
 
-# Environment
-function getenv {
+# Variable
+function getvar {
   var="$1"
   shift
   export "$var=$(printf "%s\n" "$@" | paste -s -d: -)"
@@ -56,7 +56,11 @@ function getpath {
   PATH=$PATH:$1
 }
 source ~/.config/environment
-[[ $XDG_SESSION_TYPE == "wayland" ]] && source ~/.config/environment_wayland
+if [[ $XDG_SESSION_TYPE ==  "wayland" ]]; then
+  source ~/.config/environment_wayland
+else
+  source ~/.config/environment_X11
+fi
 
 # z
 eval "$(zoxide init bash)"
