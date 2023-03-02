@@ -9,12 +9,10 @@ function getvar; set -gx $argv; end
 function getalias; abbr -ag $argv; end
 function getpath; set -x fish_user_paths $argv; end
 source ~/.config/environment
-function getenv
-  if test "$XDG_SESSION_TYPE" = "wayland"
-    source ~/.config/environment_wayland
-  else
-    source ~/.config/environment_X11
-  end
+if test "$XDG_SESSION_TYPE" = "wayland"
+  source ~/.config/environment_wayland
+else if test -f ~/.xinitrc
+  source ~/.config/environment_X11
 end
 
 function pathclean --description "Clean up PATH variable"

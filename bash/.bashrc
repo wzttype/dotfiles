@@ -58,7 +58,7 @@ function getpath {
 source ~/.config/environment
 if [[ $XDG_SESSION_TYPE ==  "wayland" ]]; then
   source ~/.config/environment_wayland
-else
+else [[ -f "~/.xinitrc" ]]
   source ~/.config/environment_X11
 fi
 

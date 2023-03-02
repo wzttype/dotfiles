@@ -10,6 +10,7 @@ input type:touchpad {
 
 # cursor
 seat type:keyboard hide_cursor when-typing enable
+seat seat0 xcursor_theme Catppuccin-Frappe-Flamingo-Cursors 36
 
 # wallpaper
 output eDP-1 bg $(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill
@@ -151,7 +152,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # assign window
 assign {
-    [title=".*Vivaldi$"] workspace number $ws4
+    [app_id="vivaldi-stable"] workspace number $ws4
     [app_id="firefox"] workspace number $ws4
     [app_id="LibreWolf"] workspace number $ws5
 }
@@ -162,11 +163,15 @@ for_window {
     [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
     [app_id="firefox" title="^Library$"] floating enable
+    [app_id="firefox" title="^Save As$"] floating enable
     [app_id="LibreWolf"] inhibit_idle fullscreen
     [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
     [app_id="LibreWolf" title="^Library$"] floating enable
-    [title=".*Vivaldi$"] inhibit_idle fullscreen
+    [app_id="LibreWolf" title="^Save As$"] floating enable
+    [app_id="vivaldi-stable"] inhibit_idle fullscreen
+    [app_id="vivaldi-stable" title="^Save File$"] floating enable
+    [app_id="vivaldi-stable" title="^Open File$"] floating enable
     [app_id="mpv"] inhibit_idle
     [app_id="pqiv"] floating enable
     [window_role="pop-up"] floating enable
@@ -180,9 +185,6 @@ floating_modifier $mod normal
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-
-# restart sway inplace
-bindsym $mod+Shift+r restart
 
 # move your focus around
 bindsym $mod+$left focus left
@@ -235,6 +237,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # resize containers
+bindsym $mod+Shift+r mode "resize"
 mode "resize" {
     bindsym $left  resize shrink width  10px
     bindsym $down  resize grow   height 10px

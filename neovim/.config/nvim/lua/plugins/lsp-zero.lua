@@ -1,11 +1,16 @@
 require("lsp-zero").ensure_installed({
-  "sumneko_lua",
+  "lua_ls",
   "emmet_ls",
   "tsserver",
   "pyright",
 })
-require("lsp-zero").preset("recommended")
-require("lsp-zero").configure("sumneko_lua", {
+require("lsp-zero").preset({
+  name = "minimal",
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
+})
+require("lsp-zero").configure("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {

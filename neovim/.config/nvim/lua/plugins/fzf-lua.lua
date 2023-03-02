@@ -1,11 +1,4 @@
-require("fzf-lua").setup({
-  winopts = {
-    border = "single",
-    preview = {
-      border = "noborder",
-    },
-  },
-})
+require("fzf-lua").setup("max-perf")
 vim.keymap.set("n", "<leader>ff", ":lua require('fzf-lua').files()<CR>")
 vim.keymap.set("n", "<leader>fb", ":lua require('fzf-lua').buffers()<CR>")
 vim.keymap.set(

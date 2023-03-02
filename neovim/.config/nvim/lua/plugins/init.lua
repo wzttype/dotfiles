@@ -25,7 +25,7 @@ require("lazy").setup({
   },
   {
     "VonHeikemen/lsp-zero.nvim",
-    ft = { "lua", "html", "css", "js", "py" },
+    ft = { "lua", "html", "css", "javascript", "python" },
     dependencies = {
       -- lsp support
       "williamboman/mason.nvim",
@@ -76,12 +76,6 @@ require("lazy").setup({
           require("plugins.vim-matchup")
         end,
       },
-      {
-        "Wansmer/treesj",
-        config = function()
-          require("plugins.treesj")
-        end,
-      },
     },
     config = function()
       require("plugins.treesitter")
@@ -90,6 +84,12 @@ require("lazy").setup({
   {
     "ibhagwan/fzf-lua",
     event = "VeryLazy",
+    dependencies = {
+      "gennaro-tedesco/nvim-possession",
+      config = function()
+        require("plugins.posession")
+      end,
+    },
     config = function()
       require("plugins.fzf-lua")
     end,
@@ -126,13 +126,6 @@ require("lazy").setup({
     end,
   },
   {
-    "echasnovski/mini.pairs",
-    event = "InsertEnter",
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
-  {
     "echasnovski/mini.surround",
     event = "BufReadPost",
     config = function()
@@ -140,10 +133,12 @@ require("lazy").setup({
     end,
   },
   {
-    "chrisgrieser/nvim-genghis",
-    event = "BufReadPost",
+    "altermo/ultimate-autopair.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = true,
   },
   {
+    "madyanov/svart.nvim",
     url = "https://gitlab.com/madyanov/svart.nvim",
     event = "BufReadPost",
     config = function()
