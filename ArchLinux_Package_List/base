@@ -20,6 +20,7 @@ foot
 fzf
 git
 global
+graphviz
 iwd
 ledger
 librewolf
@@ -51,7 +52,7 @@ transmission-cli
 ttf-dejavu
 ttf-firacode-nerd
 udisks2
-unrar
+unrar-free
 unzip
 vivaldi
 vivaldi-ffmpeg-codecs

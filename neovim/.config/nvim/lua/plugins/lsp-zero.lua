@@ -2,6 +2,7 @@ require("lsp-zero").ensure_installed({
   "lua_ls",
   "emmet_ls",
   "tsserver",
+  "eslint",
   "pyright",
 })
 require("lsp-zero").preset({

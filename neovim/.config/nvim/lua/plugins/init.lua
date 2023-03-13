@@ -34,12 +34,6 @@ require("lazy").setup({
       -- autocompletion
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-buffer",
-      {
-        "hrsh7th/cmp-cmdline",
-        config = function()
-          require("plugins.cmp-cmdline")
-        end,
-      },
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
