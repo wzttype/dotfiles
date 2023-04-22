@@ -76,6 +76,9 @@ input type:keyboard {
     xkb_options "ctrl:swapcaps"
 }
 
+# clipboard
+exec wl-paste --watch cliphist store
+
 # variables
 set $mod Mod4
 set $left h

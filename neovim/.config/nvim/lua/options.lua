@@ -29,6 +29,7 @@ vim.opt.signcolumn = "no"
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.splitbelow = true
+vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.switchbuf = "useopen"

@@ -17,7 +17,7 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move up" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move up" })
 
--- Resize window using <ctrl> arrow keys
+-- resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<A-Up>", ":resize +2<cr>", { desc = "Increase window height" })
 vim.keymap.set("n", "<A-Down>", ":resize -2<cr>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<A-Left>", ":vertical resize -2<cr>", { desc = "Decrease window width" })

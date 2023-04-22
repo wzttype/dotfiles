@@ -31,6 +31,12 @@ require("lazy").setup({
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
+      {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+          require("plugins.lsp_lines")
+        end,
+      },
       -- autocompletion
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-buffer",
@@ -89,67 +95,16 @@ require("lazy").setup({
     end,
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("plugins.indent-blankline")
-    end,
-  },
-  {
-    "echasnovski/mini.ai",
-    keys = {
-      { "a", mode = { "x", "o" } },
-      { "i", mode = { "x", "o" } },
-    },
-    config = function()
-      require("plugins.mini-ai")
-    end,
-  },
-  {
-    "echasnovski/mini.align",
+    "echasnovski/mini.nvim",
     event = "BufReadPost",
     config = function()
-      require("mini.align").setup()
-    end,
-  },
-  {
-    "echasnovski/mini.comment",
-    event = "BufReadPost",
-    config = function()
-      require("plugins.mini-comment")
-    end,
-  },
-  {
-    "echasnovski/mini.surround",
-    event = "BufReadPost",
-    config = function()
-      require("plugins.mini-surround")
-    end,
-  },
-  {
-    "altermo/ultimate-autopair.nvim",
-    event = { "InsertEnter", "CmdlineEnter" },
-    config = true,
-  },
-  {
-    "madyanov/svart.nvim",
-    url = "https://gitlab.com/madyanov/svart.nvim",
-    event = "BufReadPost",
-    config = function()
-      require("plugins.svart")
+      require("plugins.mini")
     end,
   },
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
     config = true,
-  },
-  {
-    "gabrielpoca/replacer.nvim",
-    event = "BufReadPost",
-    config = function()
-      require("plugins.replacer")
-    end,
   },
   {
     "lewis6991/gitsigns.nvim",

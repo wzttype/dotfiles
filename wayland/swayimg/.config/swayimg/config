@@ -1,7 +1,7 @@
 scale = real
 background = none
 info = yes
-font = Sarasa Gothic SC
+font = WenQuanYi Micro Hei
 font-size = 20
 font-color = #000000
 order = alpha

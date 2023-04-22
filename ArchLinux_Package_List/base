@@ -45,6 +45,7 @@ prettier
 qrencode
 ripgrep
 rsync
+samba
 smartmontools
 stow
 stylua

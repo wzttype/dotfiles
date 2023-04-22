@@ -16,6 +16,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Don't yank empty line into register
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    if vim.api.nvim_get_current_line():match("^%s*$") then
+      return '"_dd'
+    else
+      return "dd"
+    end
+  end,
+})
+
 -- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
