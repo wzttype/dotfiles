@@ -25,6 +25,7 @@ require("lazy").setup({
   },
   {
     "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
     ft = { "lua", "html", "css", "javascript", "python" },
     dependencies = {
       -- lsp support
@@ -41,11 +42,11 @@ require("lazy").setup({
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       -- snippet
       "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
     },
     config = function()
@@ -95,10 +96,22 @@ require("lazy").setup({
     end,
   },
   {
+    "axkirillov/hbac.nvim",
+    event = "BufReadPost",
+    config = true,
+  },
+  {
     "echasnovski/mini.nvim",
     event = "BufReadPost",
     config = function()
       require("plugins.mini")
+    end,
+  },
+  {
+    "https://gitlab.com/madyanov/svart.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("plugins.svart")
     end,
   },
   {
@@ -111,12 +124,6 @@ require("lazy").setup({
     event = "BufReadPre",
     config = function()
       require("plugins.gitsigns")
-    end,
-  },
-  {
-    "stevearc/oil.nvim",
-    config = function()
-      require("plugins.oil")
     end,
   },
 }, {

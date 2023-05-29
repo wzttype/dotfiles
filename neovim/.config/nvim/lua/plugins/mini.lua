@@ -9,14 +9,10 @@ require("mini.comment").setup({
     end,
   },
 })
-require("mini.indentscope").setup()
-require("mini.jump").setup()
-require("mini.jump2d").setup({
-  mappings = {
-    start_jumping = "s",
-  },
-  silent = true,
+require("mini.indentscope").setup({
+  symbol = "|",
 })
+require("mini.jump").setup()
 require("mini.pairs").setup()
 require("mini.splitjoin").setup({
   mappings = {

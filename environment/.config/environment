@@ -20,11 +20,10 @@ getalias ll "ls -AgGh --group-directories-first"
 getalias volume "wpctl get-volume @DEFAULT_AUDIO_SINK@"
 getalias battery "cat /sys/class/power_supply/BAT1/capacity"
 getalias ss "systemctl status"
-getalias td transmission-daemon
-getalias tr transmission-remote
-getalias trl "transmission-remote -l"
-getalias tre "transmission-remote --exit"
+getalias txd transmission-daemon
+getalias txr transmission-remote
 getalias gs "git status"
 getalias gd "git diff"
 
+getpath ~/.rye/env
 getpath ~/.local/bin

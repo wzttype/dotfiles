@@ -1,10 +1,10 @@
 bemenu-x11
 dunst
 i3-wm
+nxsiv
 picom
 scrot
 slock
-sxiv
 unclutter
 xclip
 xdotool
@@ -14,3 +14,4 @@ xorg-xinit
 xorg-xsetroot
 xss-lock
 xwallpaper
+zutty

@@ -1,32 +1,40 @@
-require("lsp-zero").ensure_installed({
+local lsp = require("lsp-zero").preset({})
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+  lsp.buffer_autoformat()
+end)
+
+lsp.setup_servers({
   "lua_ls",
-  "emmet_ls",
-  "tsserver",
-  "eslint",
   "pyright",
 })
-require("lsp-zero").preset({
-  name = "minimal",
-  set_lsp_keymaps = true,
-  manage_nvim_cmp = true,
-  suggest_lsp_servers = false,
-})
-require("lsp-zero").configure("lua_ls", {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
+
+require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+
+local cmp = require("cmp")
+local cmp_action = require("lsp-zero").cmp_action()
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+cmp.setup({
+  preselect = "item",
+  completion = {
+    completeopt = "menu,menuone,noinsert",
   },
-})
-require("lsp-zero").set_preferences({
-  sign_icons = {},
-})
-require("lsp-zero").setup()
-vim.diagnostic.config({
-  signs = false,
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "buffer", keyword_length = 3 },
+    { name = "luasnip", keyword_length = 2 },
+    { name = "nvim_lua" },
+  },
+  mapping = {
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+    ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+  },
 })

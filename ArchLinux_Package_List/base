@@ -16,7 +16,6 @@ emacs-nox
 entr
 fd
 fish
-foot
 fzf
 git
 global
@@ -32,6 +31,7 @@ md4c
 mesa
 mpv
 neovim
+nnn
 nodejs
 noto-fonts-emoji
 npm
@@ -45,15 +45,17 @@ prettier
 qrencode
 ripgrep
 rsync
+rye
 samba
 smartmontools
 stow
 stylua
 transmission-cli
 ttf-dejavu
-ttf-firacode-nerd
+ttf-fira-code
+ttf-nerd-fonts-symbols
 udisks2
-unrar-free
+unrar
 unzip
 vivaldi
 vivaldi-ffmpeg-codecs

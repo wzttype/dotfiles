@@ -6,7 +6,7 @@ require("nvim-possession").setup({
     enable = true,
   },
   fzf_winopts = {
-    height = 0.85,
+    height = 0.8,
     width = 0.8,
   },
 })

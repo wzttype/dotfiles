@@ -4,16 +4,16 @@ require("catppuccin").setup({
     light = "latte",
     dark = "frappe",
   },
+  transparent_background = true,
   integrations = {
     gitsigns = true,
     mason = true,
     mini = true,
     cmp = true,
-    treesitter = true,
-    indent_blankline = {
+    native_lsp = {
       enabled = true,
-      colored_indent_levels = false,
     },
+    treesitter = true,
   },
 })
-vim.api.nvim_command("colorscheme catppuccin")
+vim.cmd.colorscheme("catppuccin")

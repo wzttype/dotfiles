@@ -2,7 +2,7 @@
 max-history=10
 sort=-priority
 # style options
-font=Source Code Pro 15
+font=Fira Code 15
 background-color=#303446
 text-color=#c6d0f5
 width=600

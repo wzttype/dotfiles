@@ -9,10 +9,9 @@ exec --no-startup-id xwallpaper --zoom $(find ~/Pictures/Wallpapers/ -type f | s
 font pango:Source Code Pro 15
 
 # borders and gaps
-default_border pixel 3
-smart_borders on
-gaps inner 8
-gaps outer 8
+default_border pixel 2
+smart_borders smart
+gaps inner 10
 
 # colors(catppuccin-frappe)
 set $rosewater #f2d5cf
@@ -74,7 +73,7 @@ bindsym $mod+BackSpace kill
 bindsym $mod+Return exec $term
 
 # start launcher
-bindsym $mod+r exec bemenu-run
+bindsym $mod+r exec $launcher
 
 # volume
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
