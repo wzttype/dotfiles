@@ -7,8 +7,8 @@ Documents/password-store
 .local/share/fish/generated_completions
 .local/share/nvim
 .local/lib
+.local/rye
 .local/pipx/shared
 .local/state
 .vim/plugged
 .git
-.npm

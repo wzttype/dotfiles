@@ -2,10 +2,7 @@
 --ignore-errors
 
 # Network Options
---proxy https://127.0.0.1:1081/
-
-# Download Options
---downloader aria2c
+--proxy socks5://127.0.0.1:1080/
 
 # Filesystem Options
 -o "%(upload_date)s-%(title)s-%(uploader)s.%(ext)s"

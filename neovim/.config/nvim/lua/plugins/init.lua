@@ -26,7 +26,7 @@ require("lazy").setup({
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
-    ft = { "lua", "html", "css", "javascript", "python" },
+    ft = { "lua", "python" },
     dependencies = {
       -- lsp support
       "williamboman/mason.nvim",
@@ -59,12 +59,6 @@ require("lazy").setup({
     build = ":TSUpdate",
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        config = function()
-          require("plugins.ts-context-commentstring")
-        end,
-      },
       {
         "cshuaimin/ssr.nvim",
         config = function()
@@ -105,6 +99,13 @@ require("lazy").setup({
     event = "BufReadPost",
     config = function()
       require("plugins.mini")
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("plugins.indent-blankline")
     end,
   },
   {

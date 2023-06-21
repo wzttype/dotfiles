@@ -155,6 +155,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # assign window
 assign {
     [app_id="vivaldi-stable"] workspace number $ws4
+    [app_id="chromium"] workspace number $ws4
     [app_id="firefox"] workspace number $ws4
     [app_id="LibreWolf"] workspace number $ws5
 }
@@ -171,11 +172,13 @@ for_window {
     [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
     [app_id="LibreWolf" title="^Library$"] floating enable
     [app_id="LibreWolf" title="^Save As$"] floating enable
+    [app_id="chromium"] inhibit_idle fullscreen
+    [app_id="chromium" title="^Save File$"] floating enable
+    [app_id="chromium" title="^Open File$"] floating enable
     [app_id="vivaldi-stable"] inhibit_idle fullscreen
     [app_id="vivaldi-stable" title="^Save File$"] floating enable
     [app_id="vivaldi-stable" title="^Open File$"] floating enable
-    [app_id="mpv"] inhibit_idle
-    [app_id="pqiv"] floating enable
+    [app_id="mpv"] inhibit_idle; floating enable
     [window_role="pop-up"] floating enable
     [window_role="bubble"] floating enable
     [window_role="dialog"] floating enable

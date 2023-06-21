@@ -8,6 +8,7 @@ bottom
 brightnessctl
 browserpass
 browserpass-chromium
+chromium
 clang
 clash
 ctags
@@ -41,7 +42,6 @@ pass
 pinentry-bemenu
 pipewire
 pipewire-pulse
-prettier
 qrencode
 ripgrep
 rsync
@@ -51,14 +51,11 @@ smartmontools
 stow
 stylua
 transmission-cli
-ttf-dejavu
 ttf-fira-code
 ttf-nerd-fonts-symbols
 udisks2
 unrar
 unzip
-vivaldi
-vivaldi-ffmpeg-codecs
 vulkan-radeon
 wireplumber
 wqy-microhei
@@ -66,3 +63,4 @@ yt-dlp
 zathura
 zathura-pdf-mupdf
 zoxide
+zram-generator

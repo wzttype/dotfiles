@@ -4,7 +4,6 @@ require("catppuccin").setup({
     light = "latte",
     dark = "frappe",
   },
-  transparent_background = true,
   integrations = {
     gitsigns = true,
     mason = true,
