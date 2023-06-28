@@ -1,6 +1,7 @@
-vim.g.matchup_matchparen_offscreen = { method = "popup" }
-require("nvim-treesitter.configs").setup({
-  matchup = {
-    enable = true,
-  },
-})
+return {
+  "andymass/vim-matchup",
+  event = "BufReadPost",
+  init = function()
+    vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  end,
+}
