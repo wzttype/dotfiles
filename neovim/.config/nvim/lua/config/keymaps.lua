@@ -1,6 +1,3 @@
--- quick Esc
-vim.keymap.set("i", "jk", "<ESC>")
-
 -- delete character without copying it into register
 vim.keymap.set("n", "x", '"_x')
 

@@ -3,7 +3,6 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
-    "cshuaimin/ssr.nvim",
     "andymass/vim-matchup",
   },
   opts = {
@@ -11,6 +10,8 @@ return {
       "lua",
       "python",
     },
+    sync_install = true,
+    auto_install = false,
     highlight = {
       enable = true,
       use_languages = true,

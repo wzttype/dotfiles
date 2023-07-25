@@ -4,7 +4,12 @@ return {
   ft = { "lua", "python" },
   dependencies = {
     -- lsp support
-    "williamboman/mason.nvim",
+    { -- Optional
+      "williamboman/mason.nvim",
+      build = function()
+        pcall(vim.cmd, "MasonUpdate")
+      end,
+    },
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     -- autocompletion
