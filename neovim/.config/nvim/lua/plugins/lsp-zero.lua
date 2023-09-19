@@ -1,10 +1,10 @@
 return {
   "VonHeikemen/lsp-zero.nvim",
-  branch = "v2.x",
+  branch = "v3.x",
   ft = { "lua", "python" },
   dependencies = {
     -- lsp support
-    { -- Optional
+    {
       "williamboman/mason.nvim",
       build = function()
         pcall(vim.cmd, "MasonUpdate")
@@ -24,45 +24,36 @@ return {
     "rafamadriz/friendly-snippets",
   },
   config = function()
-    local lsp = require("lsp-zero").preset({})
+    local lsp_zero = require("lsp-zero")
 
-    lsp.on_attach(function(client, bufnr)
-      lsp.default_keymaps({ buffer = bufnr })
-      lsp.buffer_autoformat()
+    lsp_zero.on_attach(function(client, bufnr)
+      -- see :help lsp-zero-keybindings
+      -- to learn the available actions
+      lsp_zero.default_keymaps({ buffer = bufnr })
     end)
 
-    lsp.setup_servers({
-      "lua_ls",
-      "pyright",
+    require("mason").setup({})
+    require("mason-lspconfig").setup({
+      ensure_installed = { "lua_ls", "pyright" },
+      handlers = {
+        lsp_zero.default_setup,
+        lua_ls = function()
+          local lua_opts = lsp_zero.nvim_lua_ls()
+          require("lspconfig").lua_ls.setup(lua_opts)
+        end,
+      },
     })
 
-    require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-    lsp.setup()
-
     local cmp = require("cmp")
-    local cmp_action = require("lsp-zero").cmp_action()
-
-    require("luasnip.loaders.from_vscode").lazy_load()
+    local cmp_format = lsp_zero.cmp_format()
 
     cmp.setup({
-      preselect = "item",
-      completion = {
-        completeopt = "menu,menuone,noinsert",
-      },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "path" },
-        { name = "buffer", keyword_length = 3 },
-        { name = "luasnip", keyword_length = 2 },
-        { name = "nvim_lua" },
-      },
-      mapping = {
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-f>"] = cmp_action.luasnip_jump_forward(),
-        ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-      },
+      formatting = cmp_format,
+      mapping = cmp.mapping.preset.insert({
+        -- scroll up and down the documentation window
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+      }),
     })
   end,
 }

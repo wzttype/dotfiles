@@ -86,6 +86,7 @@ set $up k
 set $right l
 set $term foot
 set $launcher bemenu-run
+set $browser chromium
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -95,6 +96,9 @@ bindsym $mod+Return exec $term
 
 # start launcher
 bindsym $mod+r exec $launcher
+
+# start browser
+bindsym $mod+b exec $browser
 
 # volume
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -216,7 +220,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+n split h
 
 # split in vertical orientation
 bindsym $mod+v split v
