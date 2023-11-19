@@ -9,6 +9,7 @@ return {
     ensure_installed = {
       "lua",
       "python",
+      "ledger",
     },
     sync_install = true,
     auto_install = false,

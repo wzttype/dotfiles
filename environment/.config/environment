@@ -12,7 +12,6 @@ getvar MANPAGER "nvim +Man!"
 getvar MANPATH /usr/share/man
 getvar FZF_DEFAULT_COMMAND "rg --files --hidden --follow --smart-case"
 getvar FZF_DEFAULT_OPTS "--multi --height ~60% --layout=reverse --no-scrollbar --info=inline"
-getvar PASSWORD_STORE_DIR ~/Documents/password-store
 getvar BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'Source Code Pro 20'"
 getvar RYE_HOME ~/.local/share/rye
 getvar PYTHONPYCACHEPREFIX $XDG_CACHE_HOME/python
