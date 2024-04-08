@@ -1,4 +1,3 @@
-bemenu-wayland
 cliphist
 foot
 grim
@@ -9,5 +8,6 @@ swayidle
 swayimg
 swaylock
 wl-clipboard
+wmenu
 wtype
 slurp
