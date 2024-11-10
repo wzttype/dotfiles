@@ -3,7 +3,7 @@
 
 # Network Options
 # --proxy socks5://127.0.0.1:1080/
---proxy https://127.0.0.1:1081
+--proxy 127.0.0.1:1081
 
 # Download Options
 --downloader aria2c

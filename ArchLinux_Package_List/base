@@ -33,7 +33,6 @@ neovim
 nnn
 nodejs
 noto-fonts-emoji
-npm
 opendoas
 openssh
 pinentry
@@ -42,7 +41,6 @@ pipewire-pulse
 qrencode
 ripgrep
 rsync
-rye
 samba
 smartmontools
 stow

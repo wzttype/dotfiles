@@ -1,14 +1,14 @@
-[general]
+[viewer]
 scale = fit
 antialiasing = yes
 [list]
-all =yes
+order = none
 [font]
 name = WenQuanYi Micro Hei
 size = 20
 color = #000000
-[info]
-mode = brief
-[keys]
+[info.viewer]
+[keys.viewer]
 p = prev_file
 n = next_file
+q = exit

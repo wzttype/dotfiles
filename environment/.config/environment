@@ -12,8 +12,7 @@ getvar MANPAGER "nvim +Man!"
 getvar MANPATH /usr/share/man
 getvar FZF_DEFAULT_COMMAND "rg --files --hidden --follow --smart-case"
 getvar FZF_DEFAULT_OPTS "--multi --height ~60% --layout=reverse --no-scrollbar --info=inline"
-getvar BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446' --fn 'Source Code Pro 20'"
-getvar RYE_HOME ~/.local/share/rye
+getvar BEMENU_OPTS "-i -l 5 -H 20 --fb '#303446' --ff '#c6d0f5' --nb '#303446' --nf '#c6d0f5' --tb '#303446' --hb '#303446' --tf '#e78284' --hf '#e5c890' --af '#c6d0f5' --ab '#303446' --fn 'Source Code Pro 20'"
 getvar PYTHONPYCACHEPREFIX $XDG_CACHE_HOME/python
 getvar PYTHONUSERBASE $XDG_DATA_HOME/python
 getvar NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -29,5 +28,4 @@ getalias gs "git status"
 getalias gd "git diff"
 getalias pkgcheck "pacman -Qqd | pacman -Rsu --print -"
 
-getpath ~/.local/share/rye/env
 getpath ~/.local/bin
