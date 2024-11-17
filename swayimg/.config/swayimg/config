@@ -8,7 +8,7 @@ name = WenQuanYi Micro Hei
 size = 20
 color = #000000
 [info.viewer]
-[keys.viewer]
+[keys]
 p = prev_file
 n = next_file
 q = exit

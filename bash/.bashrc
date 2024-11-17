@@ -56,11 +56,16 @@ function getpath {
   PATH=$PATH:$1
 }
 source ~/.config/environment
-if [[ $XDG_SESSION_TYPE ==  "wayland" ]]; then
-  source ~/.config/environment_wayland
-else [[ -f "~/.xinitrc" ]]
-  source ~/.config/environment_X11
-fi
 
 # z
 eval "$(zoxide init bash)"
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

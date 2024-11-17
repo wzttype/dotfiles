@@ -1,0 +1,4 @@
+bindsym $mod+z seat - cursor set 1250 700
+bindsym $mod+x seat - cursor set 820 870
+bindsym $mod+c seat - cursor set 820 750
+bindsym $mod+a seat - cursor set 820 450
