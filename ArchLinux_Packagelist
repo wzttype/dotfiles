@@ -1,10 +1,10 @@
 amd-ucode
+android-tools
 aria2
 base
 bat
 booster
 brightnessctl
-btop
 chromium
 clang
 clash
@@ -25,13 +25,13 @@ keyd
 less
 linux
 linux-firmware
+lsof
 mako
 mandoc
 md4c
 mesa
 mpv
 neovim
-nnn
 nodejs
 noto-fonts-emoji
 opendoas
