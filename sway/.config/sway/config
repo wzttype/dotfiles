@@ -84,9 +84,6 @@ bindsym $mod+Return exec foot
 # start launcher
 bindsym $mod+r exec wmenu-run -i -l 5 -f "Fira Code 20"
 
-# start browser
-bindsym $mod+b exec chromium
-
 # volume
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+
