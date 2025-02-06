@@ -1,5 +1,5 @@
+7zip
 amd-ucode
-android-tools
 aria2
 base
 bat
@@ -13,6 +13,7 @@ ctags
 dos2unix
 entr
 fd
+firefox
 fish
 foot
 fzf
@@ -36,7 +37,6 @@ nodejs
 noto-fonts-emoji
 opendoas
 openssh
-p7zip
 pinentry
 pipewire
 pipewire-pulse
