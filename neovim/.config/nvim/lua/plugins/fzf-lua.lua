@@ -9,6 +9,6 @@ return {
   vim.keymap.set(
     "n",
     "<leader>fg",
-    ":lua require('fzf-lua').live_grep({ cmd = 'rg --line-number --hidden --smart-case' })<CR>"
+    ":lua require('fzf-lua').live_grep({ cmd = 'rg --column --line-number --hidden --smart-case' })<CR>"
   ),
 }

@@ -17,7 +17,6 @@ getvar PYTHONUSERBASE $XDG_DATA_HOME/python
 getvar NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 getvar MOZ_ENABLE_WAYLAND 1
 
-getalias la "ls -A --group-directories-first"
 getalias ll "ls -AgGh --group-directories-first"
 getalias volume "wpctl get-volume @DEFAULT_AUDIO_SINK@"
 getalias battery "cat /sys/class/power_supply/BAT1/capacity"
