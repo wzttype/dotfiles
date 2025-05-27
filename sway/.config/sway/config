@@ -58,51 +58,12 @@ client.background        $base
 # xwayland
 xwayland disable
 
-# software
-exec mako
-exec swayidle -w \
-         timeout 300 'swaylock' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock'
-exec wpaperd -d
-exec wl-paste --watch cliphist store
-exec aria2c -D
-
 # variables
 set $mod Mod4
 set $left h
 set $down j
 set $up k
 set $right l
-
-# kill focused window
-bindsym $mod+BackSpace kill
-
-# start terminal emulator
-bindsym $mod+Return exec foot
-
-# start launcher
-bindsym $mod+r exec wmenu-run -i -l 5 -f "Fira Code 20"
-
-# volume
-bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-
-bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-# brightness
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
-
-# screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
-bindsym $mod+Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
-
-# lock screen
-bindsym $mod+Ctrl+l exec swaylock
-
-# exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t custom -m 'Do you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
 # define names of workspaces
 set $ws1 "1"
@@ -140,33 +101,21 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# assign window
-assign {
-    [app_id="vivaldi-stable"] workspace number $ws4
-    [app_id="chromium"] workspace number $ws4
-    [app_id="firefox"] workspace number $ws4
-    [app_id="LibreWolf"] workspace number $ws5
-}
-
 # floating window
 for_window {
-    [app_id="firefox"] inhibit_idle fullscreen
     [app_id="firefox" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="firefox" title="^About Mozilla Firefox$"] floating enable
     [app_id="firefox" title="^Library$"] floating enable
     [app_id="firefox" title="^Save As$"] floating enable
-    [app_id="LibreWolf"] inhibit_idle fullscreen
     [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable; sticky enable
     [app_id="LibreWolf" title="^About LibreWolf$"] floating enable
     [app_id="LibreWolf" title="^Library$"] floating enable
     [app_id="LibreWolf" title="^Save As$"] floating enable
-    [app_id="chromium"] inhibit_idle fullscreen
     [app_id="chromium" title="^Save File$"] floating enable
     [app_id="chromium" title="^Open File$"] floating enable
-    [app_id="vivaldi-stable"] inhibit_idle fullscreen
     [app_id="vivaldi-stable" title="^Save File$"] floating enable
     [app_id="vivaldi-stable" title="^Open File$"] floating enable
-    [app_id="mpv"] inhibit_idle; floating enable
+    [app_id="mpv"] inhibit_idle open; floating enable
     [window_role="pop-up"] floating enable
     [window_role="bubble"] floating enable
     [window_role="dialog"] floating enable
@@ -246,3 +195,44 @@ mode "resize" {
     # return to default mode
     bindsym Escape mode "default"
 }
+
+# kill focused window
+bindsym $mod+BackSpace kill
+
+# start terminal emulator
+bindsym $mod+Return exec foot
+
+# start launcher
+bindsym $mod+r exec wmenu-run -i -l 5 -f "Fira Code 20"
+
+# volume
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+# screenshot
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
+bindsym $mod+Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
+
+# lock screen
+bindsym $mod+Ctrl+l exec swaylock
+
+# exit sway
+bindsym $mod+Shift+e exec swaynag -t custom -m 'Do you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
+
+# software
+exec mako
+exec swayidle -w \
+         timeout 300 'swaylock' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock'
+exec wpaperd -d
+exec wl-paste --watch cliphist store
+exec aria2c -D
+exec swaymsg "workspace number $ws1; exec foot;"
+exec swaymsg "workspace number $ws2; exec firefox;"
